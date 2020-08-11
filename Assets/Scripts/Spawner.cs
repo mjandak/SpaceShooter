@@ -10,6 +10,8 @@ using Random = UnityEngine.Random;
 public class Spawner : MonoBehaviour
 {
     private GameObject _player;
+    private BinTree<float> _index;
+    private List<Interval> _intervals;
 
     public List<EnemySpawnDef> Enemies;
     public float X_Min;
@@ -29,10 +31,27 @@ public class Spawner : MonoBehaviour
     public GameObject ArrivingLabel;
     public GameObject BossKiller;
 
-    //public bool EnablesPlayerToDefeatBoss
-    //{
-    //    get { return Map.Map.getPlanet(TargetPlanet).GetComponent<PlanetNode>().EnablesPlayerToDefeatBoss; }
-    //}
+
+
+    private void Awake()
+    {
+        _intervals = new List<Interval>();
+
+        float minimum = 0;
+
+        foreach (EnemySpawnDef e in Enemies)
+        {
+            var interval = new Interval
+            {
+                Minimum = minimum,
+                Enemy = e
+            };
+            _intervals.Add(interval);
+            minimum = interval.Minimum + e.Probability;
+        }
+
+        _index = new BinTree<float>(_intervals.Select(i => i.Minimum).ToArray());
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -42,6 +61,8 @@ public class Spawner : MonoBehaviour
         StartCoroutine(nameof(Spawn));
         StartCoroutine(nameof(EndFlight));
     }
+
+
 
     private void Player_HasDied()
     {
@@ -75,21 +96,7 @@ public class Spawner : MonoBehaviour
 
     private EnemySpawnDef getEnemyPrefab(float p)
     {
-        if (p >= 1) return Enemies.Last();
-        if (p <= 0) return Enemies.First();
-
-        float min = 0;
-
-        for (int i = 0; i < Enemies.Count; i++)
-        {
-            float max = min + Enemies[i].Probability;
-            if (p >= min && p < max)
-            {
-                return Enemies[i];
-            }
-            min = max;
-        }
-        throw new Exception("No prefab to spawn found.");
+        return _intervals[_index.FindIdx(p)].Enemy;
     }
 
     private IEnumerator EndFlight()
@@ -111,6 +118,69 @@ public class Spawner : MonoBehaviour
     }
 }
 
+public class BinTree<T> where T : IComparable
+{
+    public class Node
+    {
+        public Node Left;
+        public Node Right;
+        public int Idx;
+    }
+
+    private IList<T> _list;
+
+    public Node Root { get; private set; }
+    public BinTree(IList<T> orderedList)
+    {
+        _list = orderedList;
+        Root = getTree(0, (ushort)_list.Count);
+    }
+
+    private Node getTree(ushort firstIdx, ushort Count)
+    {
+        if (Count == 0) throw new ArgumentException(nameof(Count));
+        var n = new Node();
+        if (Count == 1)
+        {
+            n.Idx = firstIdx;
+            return n;
+        }
+        ushort leftIdx = firstIdx;
+        ushort rightIdx = (ushort)(firstIdx + (Count / 2));
+        n.Idx = rightIdx;
+        n.Left = getTree(leftIdx, (ushort)(rightIdx - leftIdx));
+        n.Right = getTree(rightIdx, (ushort)(Count - (rightIdx - leftIdx)));
+        return n;
+    }
+
+    private int _findIdx(T value, Node node)
+    {
+        if (_list[node.Idx].CompareTo(value) == 0) 
+            return node.Idx;
+        if (value.CompareTo(_list[node.Idx]) > 0 && node.Right != null)
+            return _findIdx(value, node.Right);
+        if (node.Left != null)
+            return _findIdx(value, node.Left);
+        return node.Idx;
+    }
+
+    public int FindIdx(T value)
+    {
+        return _findIdx(value, Root);
+    }
+
+    public override string ToString()
+    {
+        return convertToJSON(Root);
+    }
+
+    private string convertToJSON(Node node)
+    {
+        if (node == null) return "null";
+        return $"{{ idx: {node.Idx}, L: {convertToJSON(node.Left)}, R: {convertToJSON(node.Right)} }}";
+    }
+}
+
 [Serializable]
 public class EnemySpawnDef
 {
@@ -118,4 +188,10 @@ public class EnemySpawnDef
     public float Probability;
     public ushort MaxSpawnNumber;
     public float Gap;
+}
+
+public class Interval
+{
+    public float Minimum;
+    public EnemySpawnDef Enemy;
 }

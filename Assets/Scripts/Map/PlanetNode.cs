@@ -54,16 +54,7 @@ namespace Map
             else
                 _previous.text = "";
 
-//#if DEBUG
-//            if (Map.State.BossPosition == name)
-//            {
-//                GetComponent<SpriteRenderer>().color = Color.red;
-//            }
-//            else
-//            {
-//                GetComponent<SpriteRenderer>().color = Color.white;
-//            }
-//#endif
+            GetComponent<SpriteRenderer>().color = Map.State.BossPosition == name && Map.State.CanPlayerDefeatBoss ? Color.red : Color.white;
 
         }
 
