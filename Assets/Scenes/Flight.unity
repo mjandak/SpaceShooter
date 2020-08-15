@@ -1522,7 +1522,7 @@ MonoBehaviour:
   - Prefab: {fileID: 5023626728233291019, guid: f4370790401af2e4cba5f9f07bf2cc88,
       type: 3}
     Probability: 0.25
-    MaxSpawnNumber: 3
+    MaxSpawnNumber: 1
     Gap: 4
   - Prefab: {fileID: 5023626728233291019, guid: 57f1f616e026215449c203f518a5a5a5,
       type: 3}
