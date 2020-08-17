@@ -125,7 +125,7 @@ public class Enemy : MonoBehaviour, IFront
         while (true)
         {
             //if (!_isVisible) return;
-            if (IsPlayerInSight() && !Player.IsDead)
+            if (!Player.IsDead && IsPlayerInSight())
             {
                 GameObject l1 = Instantiate(_laserPrefab, _laser1.position, Quaternion.identity);
                 //GameObject l1 = _laserPool.Get();

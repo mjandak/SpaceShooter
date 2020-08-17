@@ -145,6 +145,7 @@ public class Player : MonoBehaviour, IFront
         explosion.GetComponent<ParticleSystem>().Play();
         IsDead = true;
         HasDied?.Invoke();
+        gameObject.SetActive(false);
     }
 
     private void FixedUpdate()

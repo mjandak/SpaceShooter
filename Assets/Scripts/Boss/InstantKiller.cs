@@ -33,9 +33,6 @@ public class InstantKiller : MonoBehaviour
             gameObject.SetActive(true);
             yield return new WaitForSeconds(3f);
             Kill();
-            yield return new WaitForSeconds(3f);
-            LoadDeathScene();
-            //Invoke(nameof(ActivateBeam), 5f);
         }
     }
 
@@ -43,22 +40,5 @@ public class InstantKiller : MonoBehaviour
     {
         transform.position = new Vector2(_player.transform.position.x, transform.position.y);
         _beam.SetActive(true);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        //if (Time.timeSinceLevelLoad > 3f && !_done)
-        //{
-        //    transform.position = new Vector2(_player.transform.position.x, transform.position.y);
-        //    _beam.SetActive(true);
-        //    _done = true;
-        //    Invoke(nameof(LoadDeathScene), 5f);
-        //}
-    }
-
-    private void LoadDeathScene()
-    {
-        SceneManager.LoadScene("Death");
     }
 }
