@@ -55,6 +55,7 @@ namespace Map
                 _previous.text = "";
 
             GetComponent<SpriteRenderer>().color = Map.State.BossPosition == name && Map.State.CanPlayerDefeatBoss ? Color.red : Color.white;
+            //GetComponent<SpriteRenderer>().color = Map.State.BossPosition == name ? Color.red : Color.white;
 
         }
 
@@ -81,8 +82,8 @@ namespace Map
         public void MovePlayerHere()
         {
             _player.transform.position = transform.position;
-            Visited = true;
-            if (!Map.State.Visited.Contains(name)) Map.State.Visited.Add(name);
+            //Visited = true;
+            //if (!Map.State.Visited.Contains(name)) Map.State.Visited.Add(name);
             Map.State.PlayerPosition = name;
         }
     }

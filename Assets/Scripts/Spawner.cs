@@ -111,7 +111,6 @@ public class Spawner : MonoBehaviour
         {
             ArrivingLabel.SetActive(true);
             yield return new WaitForSeconds(5f);
-            Map.Map.State.PlayerPosition = TargetPlanet;
             SceneManager.LoadScene("Map");
         }
 

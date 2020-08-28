@@ -993,7 +993,7 @@ MonoBehaviour:
   _explosionPrefab: {fileID: 1622946034561574701, guid: 1ce1342489e6ea943bb1579ce28690e8,
     type: 3}
   Force: 350
-  HitPoints: 60
+  HitPoints: 80
   Parts:
   - {fileID: 6240018404076154167}
   - {fileID: 5136887188795752273}

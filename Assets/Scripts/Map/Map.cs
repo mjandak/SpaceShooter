@@ -15,7 +15,10 @@ namespace Map
         //private List<GameObject> lineRenderers = new List<GameObject>();
         private static Dictionary<string, GameObject> _planets;
         private static Dictionary<string, GameObject> _links;
-        private ushort? _bossDistance;
+        /// <summary>
+        /// Distance between player and boss.
+        /// </summary>
+        private ushort? _distance;
 
         public static MapState State;
         public GameObject Planets;
@@ -65,8 +68,8 @@ namespace Map
                 _links.Add(planetLink.A.name + "|" + planetLink.B.name, l.gameObject);
             }
 
-            getPlanet(State.PlayerPosition).GetComponent<PlanetNode>().MovePlayerHere();
-            UpdateBossDistance();
+            getPlanet(State.PlayerPosition).MovePlayerHere();
+            UpdateDistance();
         }
 
         // Update is called once per frame
@@ -84,72 +87,75 @@ namespace Map
             //    //i++;
             //}
             BossKiller.SetActive(State.CanPlayerDefeatBoss);
-            if (_bossDistance == null)
+            if (_distance == null)
             {
                 BossDistance.text = $"Boss distance: >2";
             }
             else
             {
-                BossDistance.text = $"Boss distance: {_bossDistance}";
+                BossDistance.text = $"Boss distance: {_distance}";
             }
-            
+
         }
 
         private void PlayerMovingTo(string planetId)
         {
-            if (planetId == State.BossPosition)
+            //MovePlayer(planetId);
+            //if (State.PlayerPosition == State.BossPosition)
+            //{
+            //    Debug.Log("Clash!");
+            //    SceneManager.LoadScene("Boss");
+            //    return;
+            //}
+            //MoveBoss();
+            //if (State.PlayerPosition == State.BossPosition)
+            //{
+            //    Debug.Log("Clash!");
+            //    SceneManager.LoadScene("Boss");
+            //    return;
+            //}
+            //UpdateDistance();
+            //StartFlight(planetId);
+
+            MoveBoss();
+            if (State.BossPosition == State.PlayerPosition && State.BossPreviousPlanet == planetId)
             {
-                MoveBoss();
-                if (State.BossPosition == State.PlayerPosition)
-                {
-                    Debug.Log("Clash!");
-                    //if (State.CanPlayerDefeatBoss)
-                    //{
-                    //    SceneManager.LoadScene("Boss");
-                    //    return;
-                    //}
-                    SceneManager.LoadScene("Boss");
-                    return;
-                }
-                else
-                {
-                    StartFlight(planetId);
-                    return;
-                }
+                Debug.Log("Clash!");
+                SceneManager.LoadScene("Boss");
+            }
+            MovePlayer(planetId);
+            UpdateDistance();
+
+            if (State.PlayerPosition == State.BossPosition)
+            {
+                Debug.Log("Clash!");
+                SceneManager.LoadScene("Boss");
             }
             else
             {
-                MoveBoss();
-                if (planetId == State.BossPosition)
-                {
-                    Debug.Log("Clash!");
-                    //if (State.CanPlayerDefeatBoss)
-                    //{
-                    //    SceneManager.LoadScene("Boss");
-                    //    return;
-                    //}
-                    SceneManager.LoadScene("Boss");
-                    return;
-                }
-                else
-                {
-                    StartFlight(planetId);
-                    return;
-                }
+                StartFlight(planetId);
             }
+        }
+
+        private void MovePlayer(string planetId)
+        {
+            State.PreviousPlanet = State.PlayerPosition;
+            State.PreviousDistance = _distance;
+            PlanetNode planet = getPlanet(planetId);
+            planet.MovePlayerHere();
         }
 
         private void StartFlight(string planetId)
         {
-            PlanetNode planet = getPlanet(planetId).GetComponent<PlanetNode>();
-            State.PreviousPlanet = State.PlayerPosition;
-            State.PreviousDistance = _bossDistance;
+            PlanetNode planet = getPlanet(planetId);
+            //State.PreviousPlanet = State.PlayerPosition;
+            //State.PreviousDistance = _bossDistance;
             if (planet.Visited)
             {
                 planet.MovePlayerHere();
-                UpdateBossDistance();
                 return;
             }
+            State.Visited.Add(planetId);
             Spawner.TargetPlanet = planetId;
             Spawner.EnablesPlayerToDefeatBoss = planet.EnablesPlayerToDefeatBoss;
             SceneManager.LoadScene("Flight");
@@ -170,19 +176,19 @@ namespace Map
                 SceneManager.LoadScene("Boss");
                 return;
             }
-            State.PreviousDistance = _bossDistance;
+            State.PreviousDistance = _distance;
             State.PreviousPlanet = State.PlayerPosition;
-            UpdateBossDistance();
-            
+            UpdateDistance();
+
         }
 
-        private void UpdateBossDistance()
+        private void UpdateDistance()
         {
             List<GameObject> playerLinkedPlanets = getLinkedPlanets(State.PlayerPosition);
             if (playerLinkedPlanets.Any(p => p.name == State.BossPosition))
             {
-                _bossDistance = 1;
-                Debug.Log($"Updated distance: {_bossDistance}");
+                _distance = 1;
+                Debug.Log($"Updated distance: {_distance}");
                 return;
             }
 
@@ -191,23 +197,83 @@ namespace Map
                 var ps = getLinkedPlanets(p.name);
                 if (ps.Any(p2 => p2.name == State.BossPosition))
                 {
-                    _bossDistance = 2;
-                    Debug.Log($"Updated distance: {_bossDistance}");
+                    _distance = 2;
+                    Debug.Log($"Updated distance: {_distance}");
                     return;
                 }
             }
-            _bossDistance = null;
-            Debug.Log($"Updated distance: {_bossDistance}");
+            _distance = null;
+            Debug.Log($"Updated distance: {_distance}");
         }
 
-        /// <summary>
-        /// Randomly move boss.
-        /// </summary>
         private void MoveBoss()
         {
-            var linkedPlanets = getLinkedPlanets(State.BossPosition);
-            var planet = linkedPlanets[UnityEngine.Random.Range(0, linkedPlanets.Count - 1)];
-            State.BossPosition = planet.name;
+            //List<string> path = getShortestPath(State.BossPosition, State.PlayerPosition);
+            //Debug.Log($"Path to player: {string.Join(",", path)}");
+            //State.BossPreviousPlanet = State.BossPosition;
+            //State.BossPosition = path[path.Count - 2];
+            //Debug.Log($"Boss moved to {State.BossPosition}.");
+
+            if (!_distance.HasValue)
+            {
+                List<GameObject> linkedPlanets = getLinkedPlanets(State.BossPosition);
+                GameObject planet = linkedPlanets[UnityEngine.Random.Range(0, linkedPlanets.Count - 1)];
+                State.BossPreviousPlanet = State.BossPosition;
+                State.BossPosition = planet.name;
+                Debug.Log($"Boss moved to {State.BossPosition}.");
+                return;
+            }
+
+            List<string> possiblePlanets = getPlanetsAtDistance(State.BossPosition, _distance.Value);
+
+            //if (State.PreviousDistance.HasValue)
+            //{
+            //    List<string> possiblePreviousPlanets = getPlanetsAtDistance(State.BossPreviousPlanet, State.PreviousDistance.Value);
+            //    string[] temp = possiblePlanets.ToArray();
+            //    possiblePlanets.Clear();
+            //    foreach (string p in temp)
+            //    {
+            //        foreach (string previous_p in possiblePreviousPlanets)
+            //        {
+            //            if (IsPlanetReachableFromPosition(p, previous_p))
+            //            {
+            //                possiblePlanets.Add(p);
+            //                break;
+            //            }
+            //        }
+            //    }
+            //    possiblePlanets = possiblePlanets.Distinct().ToList();
+            //}
+
+            string[] temp = possiblePlanets.ToArray();
+            possiblePlanets.Clear();
+            foreach (var p in temp)
+            {
+                foreach (var n in getPlanet(p).Neigbours)
+                {
+                    if (State.PreviousDistance.HasValue)
+                    {
+                        if (getShortestPath(State.BossPreviousPlanet, n).Count - 1 == State.PreviousDistance)
+                        {
+                            possiblePlanets.Add(p);
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        if (getShortestPath(State.BossPreviousPlanet, n).Count - 1 > 2)
+                        {
+                            possiblePlanets.Add(p);
+                            break;
+                        }
+                    }
+
+                }
+            }
+            string targetPlanet = possiblePlanets[UnityEngine.Random.Range(0, possiblePlanets.Count - 1)];
+            var path = getShortestPath(State.BossPosition, targetPlanet);
+            State.BossPreviousPlanet = State.BossPosition;
+            State.BossPosition = path[path.Count - 2];
             Debug.Log($"Boss moved to {State.BossPosition}.");
         }
 
@@ -231,18 +297,11 @@ namespace Map
             return result;
         }
 
-        public static GameObject getPlanet(string planetId)
+        public static PlanetNode getPlanet(string planetId)
         {
             if (!_planets.ContainsKey(planetId))
                 throw new Exception($"Planet with id {planetId} doesn't exist");
-            return _planets[planetId];
-
-            //foreach (Transform p in Planets.transform)
-            //{
-            //    if (p.name == planetId)
-            //        return p.gameObject;
-            //}
-            //return null;
+            return _planets[planetId].GetComponent<PlanetNode>();
         }
 
         public static GameObject getLink(string id)
@@ -252,21 +311,85 @@ namespace Map
             return null;
         }
 
-        //private void DrawLinesToNeighbours(Transform planet)
-        //{
-        //    PlanetNode planetNode = planet.gameObject.GetComponent<PlanetNode>();
-        //    foreach (GameObject neighbour in planetNode.Neigbours)
-        //    {
-        //        if (neighbour == null) continue;
-        //        if (visited.Contains(neighbour)) continue;
-        //        var lineRndr = Instantiate(PlanetLink).GetComponent<LineRenderer>();
-        //        lineRenderers.Add(lineRndr.gameObject);
-        //        lineRndr.SetPositions(new[] { planet.position, neighbour.transform.position });
-        //        lineRndr.startWidth = 0.2f;
-        //        lineRndr.endWidth = 0.2f;
-        //    }
-        //    visited.Add(planet.gameObject);
-        //}
+        private List<string> getShortestPath(string startPlanet, string endPlanet)
+        {
+            Queue<string> Q = new Queue<string>();
+            //Dictionary<string, string> visited = new Dictionary<string, string>();
+            var visited = new List<ValueTuple<string, string>>();
+            Q.Enqueue(startPlanet);
+            visited.Add((null, startPlanet));
+
+            while (Q.Count > 0)
+            {
+                string e = Q.Dequeue();
+
+                //if (e == nameToSearchFor)
+                //return e;
+                //break;
+                foreach (string friend in getPlanet(e).Neigbours)
+                {
+                    if (friend == endPlanet)
+                    {
+                        visited.Add(new ValueTuple<string, string>(e, friend));
+                        Q.Clear();
+                        break;
+                    }
+
+                    if (!visited.Contains(new ValueTuple<string, string>(e, friend)))
+                    {
+                        Q.Enqueue(friend);
+                        visited.Add(new ValueTuple<string, string>(e, friend));
+                    }
+                }
+            }
+            //return null;
+
+            var path = new List<string>();
+            var currentPathNode = endPlanet;
+            while (true)
+            {
+                path.Add(currentPathNode);
+                if (currentPathNode == startPlanet) break;
+                //var neighbours = getPlanet(currentPathNode).GetComponent<PlanetNode>().Neigbours;
+                //var pathNode = neighbours.First(s => visited.Contains(s));
+                var previousNode = visited.First(x => x.Item2 == currentPathNode);
+                currentPathNode = previousNode.Item1;
+            }
+            return path;
+        }
+
+        private bool IsPlanetReachableFromPosition(string planet, string position)
+        {
+            foreach (string p in getPlanet(position).Neigbours)
+            {
+                if (p == planet) return true;
+            }
+            return false;
+        }
+
+        private List<string> getPlanetsAtDistance(string planet, ushort distance)
+        {
+            var Q = new Queue<string>();
+            var visited = new List<string>();
+            Q.Enqueue(planet);
+            visited.Add(planet);
+            ushort currentLevel = 0;
+            while (true)
+            {
+                if (currentLevel == distance) return Q.ToList();
+                var count = Q.Count;
+                for (int i = 0; i < count; i++)
+                {
+                    foreach (string n in getPlanet(Q.Dequeue()).Neigbours)
+                    {
+                        if (visited.Contains(n)) continue;
+                        Q.Enqueue(n);
+                        visited.Add(n);
+                    }
+                }
+                currentLevel++;
+            }
+        }
     }
 
     public class MapState
@@ -275,7 +398,14 @@ namespace Map
         public string PlayerPosition;
         public string BossPosition;
         public bool CanPlayerDefeatBoss;
+        /// <summary>
+        /// Player's previous planet
+        /// </summary>
         public string PreviousPlanet;
+        /// <summary>
+        /// Boss previous planet.
+        /// </summary>
+        public string BossPreviousPlanet;
         public ushort? PreviousDistance;
     }
 }
