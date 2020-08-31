@@ -15,6 +15,7 @@ namespace Map
         //private List<GameObject> lineRenderers = new List<GameObject>();
         private static Dictionary<string, GameObject> _planets;
         private static Dictionary<string, GameObject> _links;
+        private static List<ValueTuple<string, string, int>> _planetDistances;
         /// <summary>
         /// Distance between player and boss.
         /// </summary>
@@ -25,7 +26,7 @@ namespace Map
         public GameObject Links;
         public Player Player;
         public GameObject BossKiller;
-        public TextMeshProUGUI BossDistance;
+        public BossDistance BossDistance;
 
         static Map()
         {
@@ -56,8 +57,7 @@ namespace Map
             {
                 _planets.Add(p.name, p.gameObject);
                 p.GetComponent<PlanetNode>().PlayerMovingdHere += PlayerMovingTo;
-                List<GameObject> linkedPlanets = getLinkedPlanets(p.name);
-                p.gameObject.GetComponent<PlanetNode>().Neigbours = linkedPlanets.Select(lp => lp.name).ToList();
+                p.gameObject.GetComponent<PlanetNode>().Neigbours = getLinkedPlanets(p.name).Select(lp => lp.name).ToList();
             }
 
             //reset dictionary, game objects are destroyed when leaving scene
@@ -68,34 +68,47 @@ namespace Map
                 _links.Add(planetLink.A.name + "|" + planetLink.B.name, l.gameObject);
             }
 
+            _planetDistances = new List<(string, string, int)>();
+            string[] planets = _planets.Keys.ToArray();
+            for (int i = 0; i < planets.Length; i++)
+            {
+                var p = planets[i];
+                for (int j = i; j < planets.Length; j++)
+                {
+                    _planetDistances.Add((p, planets[j], getShortestPath(p, planets[j]).Count-1));
+                }
+            }
+
+            BossDistance.GetComponent<BossDistance>().MouseEnter += highLightPlanets;
+            BossDistance.GetComponent<BossDistance>().MouseExit += unhighLightPlanets;
+
             getPlanet(State.PlayerPosition).MovePlayerHere();
             UpdateDistance();
+        }
+
+        public static void unhighLightPlanets()
+        {
+            foreach (GameObject p in _planets.Values)
+            {
+                p.GetComponent<PlanetNode>().Highlighted = false;
+            }
+        }
+
+        public static void highLightPlanets(string position, int distance)
+        {
+            IEnumerable<(string, string, int)> selectedPlanets = _planetDistances.Where(p => p.Item3 == distance && (p.Item1 == position || p.Item2 == position));
+            foreach ((string, string, int) p in selectedPlanets)
+            {
+                var name = p.Item1 == position ? p.Item2 : p.Item1;
+                getPlanet(name).Highlighted = true;
+            }
         }
 
         // Update is called once per frame
         void Update()
         {
-            //visited.Clear();
-            //foreach (GameObject lr in lineRenderers)
-            //{
-            //    DestroyImmediate(lr);
-            //}
-            //foreach (Transform planet in transform)
-            //{
-            //    //if (i == 1) break;
-            //    DrawLinesToNeighbours(planet);
-            //    //i++;
-            //}
             BossKiller.SetActive(State.CanPlayerDefeatBoss);
-            if (_distance == null)
-            {
-                BossDistance.text = $"Boss distance: >2";
-            }
-            else
-            {
-                BossDistance.text = $"Boss distance: {_distance}";
-            }
-
+            BossDistance.Distance = _distance;
         }
 
         private void PlayerMovingTo(string planetId)

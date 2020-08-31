@@ -29,6 +29,8 @@ namespace Map
             private set;
         }
 
+        public bool Highlighted { get; set; }
+
         public event Action<string> PlayerMovingdHere;
 
         private void Awake()
@@ -56,7 +58,10 @@ namespace Map
 
             GetComponent<SpriteRenderer>().color = Map.State.BossPosition == name && Map.State.CanPlayerDefeatBoss ? Color.red : Color.white;
             //GetComponent<SpriteRenderer>().color = Map.State.BossPosition == name ? Color.red : Color.white;
-
+            if (Highlighted)
+            {
+                GetComponent<SpriteRenderer>().color = Color.yellow;
+            }
         }
 
         private void OnMouseUp()
@@ -67,6 +72,11 @@ namespace Map
 
         private void OnMouseOver()
         {
+            if (name == Map.State.PreviousPlanet)
+            {
+                Map.highLightPlanets(name, Map.State.PreviousDistance.HasValue ? (int)Map.State.PreviousDistance : 3);
+            }
+
             if (!Neigbours.Contains(Map.State.PlayerPosition)) return;
             _highlightedLink = Map.getLink($"{Map.State.PlayerPosition}|{name}");
             if (_highlightedLink == null) _highlightedLink = Map.getLink($"{name}|{Map.State.PlayerPosition}");
@@ -75,6 +85,11 @@ namespace Map
 
         private void OnMouseExit()
         {
+            if (name == Map.State.PreviousPlanet)
+            {
+                Map.unhighLightPlanets();
+            }
+
             if (_highlightedLink == null) return;
             _highlightedLink.GetComponent<PlanetLink>().UnhighlightPath();
         }
