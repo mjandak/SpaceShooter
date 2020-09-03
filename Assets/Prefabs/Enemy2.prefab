@@ -273,7 +273,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 2bb9b7d797afefc469dab64021159db3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -458,14 +458,13 @@ MonoBehaviour:
   _explosionParticleSystem: {fileID: 8137035544582119087}
   _laser1: {fileID: 4152950406424001971}
   _laser2: {fileID: 6564024522719875883}
-  _hitPoints: 10
   _laserPrefab: {fileID: 6794983635703256674, guid: 913165b7d0c045740b338becd2b45978,
     type: 3}
+  _engines: []
+  _parts: []
+  _hitPoints: 10
   Force: 90
   ShootRate: 0.2
-  Parts:
-  - {fileID: 5125126555987767554}
-  - {fileID: 2296022805244123088}
 --- !u!1 &5125126555987767554
 GameObject:
   m_ObjectHideFlags: 0
