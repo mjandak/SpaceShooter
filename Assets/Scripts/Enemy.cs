@@ -39,7 +39,10 @@ public class Enemy : MonoBehaviour, IFront
     public Vector2 Front
     {
         get { return -transform.up; }
-        set { transform.up = -value; }
+        set 
+        {
+            transform.Rotate(Vector3.forward, Vector2.SignedAngle(Front, value));
+        }
     }
 
     // Start is called before the first frame update
