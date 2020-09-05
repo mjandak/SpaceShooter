@@ -197,26 +197,13 @@ namespace Map
 
         private void UpdateDistance()
         {
-            List<GameObject> playerLinkedPlanets = getLinkedPlanets(State.PlayerPosition);
-            if (playerLinkedPlanets.Any(p => p.name == State.BossPosition))
+            ushort d = (ushort)(getShortestPath(State.PlayerPosition, State.BossPosition).Count - 1);
+            if (d > 2)
             {
-                _distance = 1;
-                Debug.Log($"Updated distance: {_distance}");
+                _distance = null;
                 return;
             }
-
-            foreach (GameObject p in playerLinkedPlanets)
-            {
-                var ps = getLinkedPlanets(p.name);
-                if (ps.Any(p2 => p2.name == State.BossPosition))
-                {
-                    _distance = 2;
-                    Debug.Log($"Updated distance: {_distance}");
-                    return;
-                }
-            }
-            _distance = null;
-            Debug.Log($"Updated distance: {_distance}");
+            _distance = d;
         }
 
         private void MoveBoss()
