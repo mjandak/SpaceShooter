@@ -117,7 +117,7 @@ MonoBehaviour:
   _collider: {fileID: 3503412255494724831}
   FireRate: 4
   FireStartDelay: 2
-  ShotImpulse: 0.1
+  ShotImpulse: 0.2
 --- !u!1 &414664521
 GameObject:
   m_ObjectHideFlags: 0
@@ -205,7 +205,7 @@ MonoBehaviour:
   _collider: {fileID: 3503412255494724831}
   FireRate: 3
   FireStartDelay: 0
-  ShotImpulse: 0.1
+  ShotImpulse: 0.2
 --- !u!1 &555171706
 GameObject:
   m_ObjectHideFlags: 0

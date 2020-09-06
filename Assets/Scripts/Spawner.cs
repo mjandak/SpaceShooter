@@ -80,8 +80,14 @@ public class Spawner : MonoBehaviour
         while (true)
         {
             EnemySpawnDef def = getEnemyPrefab(Random.Range(0f, 1f));
+            
+            float d = Start_Max.position.x - Start_Min.position.x;
+            float r = Random.Range(0, d);
+            Vector2 spawnPosition = new Vector2(Start_Min.position.x + r, Y);
+            
+
             int count = Random.Range(1, def.MaxSpawnNumber + 1); //max is exclusive
-            Vector2 spawnPosition = new Vector2(Random.Range(X_Min, X_Max), Y);
+
             for (int i = 0; i < count; i++)
             {
                 float gap = i * def.Gap;
@@ -90,7 +96,22 @@ public class Spawner : MonoBehaviour
                 enemy.GetComponent<Enemy>().Front = (target - enemy.transform.position).normalized;
             }
 
-            yield return new WaitForSeconds(3.0f);
+            //yield return new WaitForSeconds(1f);
+
+            //EnemySpawnDef def2 = getEnemyPrefab(Random.Range(0f, 1f));
+            //Vector2 spawnPosition2 = new Vector2(Start_Min.position.x + ((r + (d * 0.6f)) % d), Y);
+
+            //int count2 = Random.Range(1, def2.MaxSpawnNumber + 1); //max is exclusive
+
+            //for (int i = 0; i < count2; i++)
+            //{
+            //    float gap = i * def2.Gap;
+            //    GameObject enemy = Instantiate(def2.Prefab, new Vector2(spawnPosition2.x + gap, spawnPosition2.y), Quaternion.identity);
+            //    Vector3 target = new Vector2(_player.transform.position.x + gap, _player.transform.position.y);
+            //    enemy.GetComponent<Enemy>().Front = (target - enemy.transform.position).normalized;
+            //}
+
+            yield return new WaitForSeconds(2.0f);
         }
     }
 

@@ -194,7 +194,7 @@ MonoBehaviour:
   _rb: {fileID: 2316274546659308747}
   _particleFXPrefab: {fileID: 4251198109266681828, guid: 0629c9da6c5533e4dba334d46cf5ad63,
     type: 3}
-  Impulse: 0.15
+  Impulse: 0.2
 --- !u!50 &2316274546659308747
 Rigidbody2D:
   serializedVersion: 4

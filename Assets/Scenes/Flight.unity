@@ -1523,17 +1523,17 @@ MonoBehaviour:
       type: 3}
     Probability: 0.25
     MaxSpawnNumber: 1
-    Gap: 4
+    Gap: 5
   - Prefab: {fileID: 5023626728233291019, guid: 57f1f616e026215449c203f518a5a5a5,
       type: 3}
     Probability: 0.25
     MaxSpawnNumber: 1
-    Gap: 0
+    Gap: 5
   - Prefab: {fileID: 2773073870511923964, guid: 185dbc1421cb9ec47a3648f3f825982e,
       type: 3}
     Probability: 0.25
-    MaxSpawnNumber: 1
-    Gap: 0
+    MaxSpawnNumber: 2
+    Gap: 4
   - Prefab: {fileID: 5023626728233291019, guid: 123bd187193fac844a77022fc67ef7bb,
       type: 3}
     Probability: 0.25
@@ -1622,7 +1622,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1705827699}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -18.98, y: 12.02, z: 0}
+  m_LocalPosition: {x: -18.98, y: 12, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1610696987}

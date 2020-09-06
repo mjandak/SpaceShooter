@@ -14,12 +14,15 @@ public class BossScene : MonoBehaviour
     private Player _player;
     [SerializeField]
     private TextMeshProUGUI _victoryInfo;
+    [SerializeField]
+    private HUDHitPoints _hitPointsLabel;
 
     private void Awake()
     {
         _victoryInfo.enabled = false;
         _boss.Destroyed += () => Invoke(nameof(showVictoryInfo), 5f);
-        _player.HasDied += () => Invoke(nameof(loadDeathScene), 3f); ;
+        _player.HasDied += () => Invoke(nameof(loadDeathScene), 3f);
+        _player.Hit += (hitPoints) => { Map.Map.State.SetPlayerHitPoints(hitPoints); _hitPointsLabel.Refresh(); };
     }
 
     private void showVictoryInfo()
