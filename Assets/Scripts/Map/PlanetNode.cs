@@ -18,10 +18,12 @@ namespace Map
         private TextMesh _previous;
         private GameObject _player;
         private GameObject _highlightedLink;
+        private Color _initSpriteColor;
 
         [HideInInspector]
         public List<string> Neigbours;
         public bool EnablesPlayerToDefeatBoss;
+        public bool ResetsPlayerHitPoints;
 
         public bool Visited
         {
@@ -36,6 +38,8 @@ namespace Map
         private void Awake()
         {
             _player = GameObject.FindGameObjectWithTag("Player");
+            _initSpriteColor = GetComponent<SpriteRenderer>().color;
+
         }
 
         // Start is called before the first frame update
@@ -56,8 +60,8 @@ namespace Map
             else
                 _previous.text = "";
 
-            GetComponent<SpriteRenderer>().color = Map.State.BossPosition == name && Map.State.CanPlayerDefeatBoss ? Color.red : Color.white;
-            //GetComponent<SpriteRenderer>().color = Map.State.BossPosition == name ? Color.red : Color.white;
+            GetComponent<SpriteRenderer>().color = Map.State.BossPosition == name && Map.State.CanPlayerDefeatBoss ? Color.red : _initSpriteColor;
+            //GetComponent<SpriteRenderer>().color = Map.State.BossPosition == name ? Color.red : _initSpriteColor;
             if (Highlighted)
             {
                 GetComponent<SpriteRenderer>().color = Color.yellow;
@@ -70,7 +74,7 @@ namespace Map
             PlayerMovingdHere(name);
         }
 
-        private void OnMouseOver()
+        private void OnMouseEnter()
         {
             if (name == Map.State.PreviousPlanet)
             {
@@ -85,11 +89,7 @@ namespace Map
 
         private void OnMouseExit()
         {
-            if (name == Map.State.PreviousPlanet)
-            {
-                Map.unhighLightPlanets();
-            }
-
+            Map.unhighLightPlanets();
             if (_highlightedLink == null) return;
             _highlightedLink.GetComponent<PlanetLink>().UnhighlightPath();
         }

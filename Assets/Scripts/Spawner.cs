@@ -9,7 +9,7 @@ using Random = UnityEngine.Random;
 
 public class Spawner : MonoBehaviour
 {
-    private GameObject _player;
+    private Player _player;
     private BinTree<float> _index;
     private List<Interval> _intervals;
 
@@ -26,12 +26,12 @@ public class Spawner : MonoBehaviour
     /// </summary>
     public static string TargetPlanet;
     public static bool EnablesPlayerToDefeatBoss;
+    public static bool ResetsPlayerHitPoints;
     [Tooltip("Length of flight in seconds.")]
     public float FlightLength;
     public GameObject ArrivingLabel;
     public GameObject BossKiller;
-
-
+    public HUDHitPoints HitPointsLabel;
 
     private void Awake()
     {
@@ -56,13 +56,13 @@ public class Spawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _player = GameObject.FindGameObjectWithTag("Player");
-        _player.GetComponent<Player>().HasDied += () => { Invoke(nameof(Player_HasDied), 3f); };
+        _player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        _player.HasDied += () => { Invoke(nameof(Player_HasDied), 3f); };
+        _player.Hit += (hitPoints) => { Map.Map.State.SetPlayerHitPoints(hitPoints); HitPointsLabel.Refresh(); };
+        _player.HitPoints = Map.Map.State.PlayerHitPoints;
         StartCoroutine(nameof(Spawn));
         StartCoroutine(nameof(EndFlight));
     }
-
-
 
     private void Player_HasDied()
     {
@@ -103,6 +103,10 @@ public class Spawner : MonoBehaviour
     {
         yield return new WaitForSeconds(FlightLength);
         StopCoroutine(nameof(Spawn));
+        if (ResetsPlayerHitPoints)
+        {
+            Map.Map.State.ResetPlayerHitPoints();
+        }
         if (EnablesPlayerToDefeatBoss && !Map.Map.State.CanPlayerDefeatBoss)
         {
             BossKiller.SetActive(true);
@@ -154,7 +158,7 @@ public class BinTree<T> where T : IComparable
 
     private int _findIdx(T value, Node node)
     {
-        if (_list[node.Idx].CompareTo(value) == 0) 
+        if (_list[node.Idx].CompareTo(value) == 0)
             return node.Idx;
         if (value.CompareTo(_list[node.Idx]) > 0 && node.Right != null)
             return _findIdx(value, node.Right);

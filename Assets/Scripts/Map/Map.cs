@@ -37,6 +37,7 @@ namespace Map
                 PlayerPosition = initPosition,
                 Visited = new List<string>() { initPosition }
             };
+            State.ResetPlayerHitPoints();
         }
 
         // Start is called before the first frame update
@@ -55,9 +56,10 @@ namespace Map
             _planets = new Dictionary<string, GameObject>();
             foreach (Transform p in Planets.transform)
             {
-                _planets.Add(p.name, p.gameObject);
-                p.GetComponent<PlanetNode>().PlayerMovingdHere += PlayerMovingTo;
-                p.gameObject.GetComponent<PlanetNode>().Neigbours = getLinkedPlanets(p.name).Select(lp => lp.name).ToList();
+                PlanetNode pNode = p.GetComponentInChildren<PlanetNode>();
+                _planets.Add(pNode.name, pNode.gameObject);
+                pNode.PlayerMovingdHere += PlayerMovingTo;
+                pNode.Neigbours = getLinkedPlanets(pNode.name).Select(lp => lp.name).ToList();
             }
 
             //reset dictionary, game objects are destroyed when leaving scene
@@ -166,11 +168,13 @@ namespace Map
             if (planet.Visited)
             {
                 planet.MovePlayerHere();
+                if (planet.ResetsPlayerHitPoints) State.ResetPlayerHitPoints();
                 return;
             }
             State.Visited.Add(planetId);
             Spawner.TargetPlanet = planetId;
             Spawner.EnablesPlayerToDefeatBoss = planet.EnablesPlayerToDefeatBoss;
+            Spawner.ResetsPlayerHitPoints = planet.ResetsPlayerHitPoints;
             SceneManager.LoadScene("Flight");
             return;
         }
@@ -407,6 +411,17 @@ namespace Map
         /// </summary>
         public string BossPreviousPlanet;
         public ushort? PreviousDistance;
+        public ushort PlayerHitPoints;
+
+        public void ResetPlayerHitPoints()
+        {
+            PlayerHitPoints = 6;
+        }
+
+        public void SetPlayerHitPoints(ushort amount)
+        {
+            PlayerHitPoints = amount;
+        }
     }
 }
 

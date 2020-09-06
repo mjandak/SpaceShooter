@@ -1549,6 +1549,7 @@ MonoBehaviour:
   FlightLength: 30
   ArrivingLabel: {fileID: 427656875}
   BossKiller: {fileID: 1730017699}
+  HitPointsLabel: {fileID: 4588716409269133646}
 --- !u!4 &1610696987
 Transform:
   m_ObjectHideFlags: 0
@@ -2383,3 +2384,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ced7cbe4b19142440ad8062c670426bd, type: 3}
+--- !u!114 &4588716409269133646 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4588716409591339990, guid: ced7cbe4b19142440ad8062c670426bd,
+    type: 3}
+  m_PrefabInstance: {fileID: 4588716409269133645}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd513c90799b02e4eb163a07a8c8903d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

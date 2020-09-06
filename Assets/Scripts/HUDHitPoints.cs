@@ -7,19 +7,15 @@ using System.Linq;
 public class HUDHitPoints : MonoBehaviour
 {
     [SerializeField]
-    private Player _player;
-    [SerializeField]
     private TextMeshProUGUI _text;
 
     private void Awake()
     {
-        _player.Hit += _player_Hit;
-        _text.text = new string('I', 10);
+        _text.text = new string('I', Map.Map.State.PlayerHitPoints);
     }
 
-    private void _player_Hit(ushort obj)
+    public void Refresh()
     {
-
-        _text.text = new string('I', obj);
+        _text.text = new string('I', Map.Map.State.PlayerHitPoints);
     }
 }
