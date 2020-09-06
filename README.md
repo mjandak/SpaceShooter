@@ -1,2 +1,2 @@
 # SpaceShooter
-2D space shooter game. Playable at https://mjandak.github.io.
+2D space shooter game. Play here: https://mjandak.github.io.
