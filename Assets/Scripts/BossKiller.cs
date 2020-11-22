@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using SpaceMap;
 
 public class BossKiller : MonoBehaviour
 {
@@ -15,8 +16,8 @@ public class BossKiller : MonoBehaviour
         GetComponent<SpriteRenderer>().enabled = false;
         GetComponent<Collider2D>().enabled = false;
         yield return new WaitForSeconds(5f);
-        Map.Map.State.CanPlayerDefeatBoss = true;
-        Map.Map.State.PlayerPosition = Spawner.TargetPlanet;
+        Map.State.CanPlayerDefeatBoss = true;
+        Map.State.PlayerPosition = Spawner.TargetPlanet;
         SceneManager.LoadScene("Map");
     }
 }

@@ -7,7 +7,7 @@ using Unity.Mathematics;
 using UnityEngine.SceneManagement;
 using TMPro;
 
-namespace Map
+namespace SpaceMap
 {
     public class Map : MonoBehaviour
     {
@@ -77,7 +77,7 @@ namespace Map
                 var p = planets[i];
                 for (int j = i; j < planets.Length; j++)
                 {
-                    _planetDistances.Add((p, planets[j], getShortestPath(p, planets[j]).Count-1));
+                    _planetDistances.Add((p, planets[j], getShortestPath(p, planets[j]).Count - 1));
                 }
             }
 
@@ -168,7 +168,8 @@ namespace Map
             if (planet.Visited)
             {
                 planet.MovePlayerHere();
-                if (planet.ResetsPlayerHitPoints) State.ResetPlayerHitPoints();
+                if (planet.ResetsPlayerHitPoints) 
+                    State.ResetPlayerHitPoints();
                 return;
             }
             State.Visited.Add(planetId);

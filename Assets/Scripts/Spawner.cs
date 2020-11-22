@@ -1,4 +1,4 @@
-﻿using Map;
+﻿using SpaceMap;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -58,8 +58,8 @@ public class Spawner : MonoBehaviour
     {
         _player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         _player.HasDied += () => { Invoke(nameof(Player_HasDied), 3f); };
-        _player.Hit += (hitPoints) => { Map.Map.State.SetPlayerHitPoints(hitPoints); HitPointsLabel.Refresh(); };
-        _player.HitPoints = Map.Map.State.PlayerHitPoints;
+        _player.Hit += (hitPoints) => { Map.State.SetPlayerHitPoints(hitPoints); HitPointsLabel.Refresh(); };
+        _player.HitPoints = Map.State.PlayerHitPoints;
         StartCoroutine(nameof(Spawn));
         StartCoroutine(nameof(EndFlight));
     }
@@ -80,11 +80,11 @@ public class Spawner : MonoBehaviour
         while (true)
         {
             EnemySpawnDef def = getEnemyPrefab(Random.Range(0f, 1f));
-            
+
             float d = Start_Max.position.x - Start_Min.position.x;
             float r = Random.Range(0, d);
             Vector2 spawnPosition = new Vector2(Start_Min.position.x + r, Y);
-            
+
 
             int count = Random.Range(1, def.MaxSpawnNumber + 1); //max is exclusive
 
@@ -126,9 +126,9 @@ public class Spawner : MonoBehaviour
         StopCoroutine(nameof(Spawn));
         if (ResetsPlayerHitPoints)
         {
-            Map.Map.State.ResetPlayerHitPoints();
+            Map.State.ResetPlayerHitPoints();
         }
-        if (EnablesPlayerToDefeatBoss && !Map.Map.State.CanPlayerDefeatBoss)
+        if (EnablesPlayerToDefeatBoss && !Map.State.CanPlayerDefeatBoss)
         {
             BossKiller.SetActive(true);
         }

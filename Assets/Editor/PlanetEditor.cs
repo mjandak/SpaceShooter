@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-using Map;
+using SpaceMap;
 
 //[CustomEditor(typeof(PlanetNode))]
 //public class PlanetEditor : Editor

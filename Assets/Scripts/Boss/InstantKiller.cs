@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using SpaceMap;
 
 public class InstantKiller : MonoBehaviour
 {
@@ -22,7 +23,7 @@ public class InstantKiller : MonoBehaviour
     // Start is called before the first frame update
     IEnumerator Start()
     {
-        if (Map.Map.State.CanPlayerDefeatBoss)
+        if (Map.State.CanPlayerDefeatBoss)
         {
             _boss.SetActive(true);
             gameObject.SetActive(false);

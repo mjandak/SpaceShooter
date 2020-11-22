@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using System.Linq;
+using SpaceMap;
 
 public class HUDHitPoints : MonoBehaviour
 {
@@ -11,11 +12,11 @@ public class HUDHitPoints : MonoBehaviour
 
     private void Awake()
     {
-        _text.text = new string('I', Map.Map.State.PlayerHitPoints);
+        _text.text = new string('I', Map.State.PlayerHitPoints);
     }
 
     public void Refresh()
     {
-        _text.text = new string('I', Map.Map.State.PlayerHitPoints);
+        _text.text = new string('I', Map.State.PlayerHitPoints);
     }
 }
