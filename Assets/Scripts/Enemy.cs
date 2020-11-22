@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class Enemy : MonoBehaviour, IFront
 {
@@ -26,6 +27,11 @@ public class Enemy : MonoBehaviour, IFront
     private GameObject[] _engines;
     [SerializeField]
     private GameObject[] _parts;
+    [SerializeField] private Transform _rayCastPointL;
+    [SerializeField] private Transform _rayCastPointR;
+    [SerializeField] private Transform _rayCastPointM;
+    private Vector2 _movementDir;
+    [SerializeField] private float _collisionAvoidDetectionReach;
 
     [Header("Params")]
     [SerializeField]
@@ -34,12 +40,15 @@ public class Enemy : MonoBehaviour, IFront
     public float Force;
     [Tooltip("Shooting rate in seconds.")]
     public float ShootRate;
+    public Vector2 Dir { get => _movementDir; }
 
-
+    /// <summary>
+    /// Direction enemy is facing, normalized.
+    /// </summary>
     public Vector2 Front
     {
         get { return -transform.up; }
-        set 
+        set
         {
             transform.Rotate(Vector3.forward, Vector2.SignedAngle(Front, value));
         }
@@ -50,7 +59,9 @@ public class Enemy : MonoBehaviour, IFront
     {
         //Invoke(nameof(changeVelocity), 2f);
         _player = GameObject.FindGameObjectWithTag("Player");
+        _movementDir = Front;
         StartCoroutine(nameof(Shoot));
+        StartCoroutine(PreventCollision());
     }
 
     private void changeVelocity()
@@ -72,7 +83,7 @@ public class Enemy : MonoBehaviour, IFront
     {
         //_rb.MovePosition(_rb.position + _velocity * Time.fixedDeltaTime);
         _rb.AddForce(Vector2.down * _downThrust, ForceMode2D.Force);
-        _rb.AddForce(Front * Force, ForceMode2D.Force);
+        _rb.AddForce(_movementDir * Force, ForceMode2D.Force);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -119,8 +130,93 @@ public class Enemy : MonoBehaviour, IFront
 
     private bool IsPlayerInSight()
     {
-        var directionToPlayer = _player.transform.position - transform.position;
-        return Vector3.Angle(Front, directionToPlayer) < 10;
+        Vector3 directionToPlayer = _player.transform.position - transform.position;
+
+        //if (Vector3.Angle(Front, directionToPlayer) < 10)
+        //{
+        //    //RaycastHit2D hit = Physics2D.Raycast(transform.position, Front, directionToPlayer.magnitude, LayerMask.GetMask("Enemy"));
+        //    //return !hit;
+        //    //if (hit)
+        //    //{
+        //    //    return false;
+        //    //}
+        //    //else
+        //    //{
+        //    //    return true;
+        //    //}
+
+        //    RaycastHit2D hit = Physics2D.Raycast(_rayCastPoint.position, Front, directionToPlayer.magnitude, LayerMask.GetMask("Enemy"));
+        //    //Debug.DrawRay(_rayCastPoint.position, directionToPlayer, Color.red);
+        //    Debug.DrawLine(_rayCastPoint.position, _rayCastPoint.position + (Vector3)Front * directionToPlayer.magnitude, Color.red);
+        //    return !hit;
+        //}
+        //return false;
+
+        if (Vector3.Angle(Front, directionToPlayer) < 10)
+        {
+            RaycastHit2D[] hit = Physics2D.RaycastAll(transform.position, Front, directionToPlayer.magnitude, LayerMask.GetMask("Enemy"));
+            foreach (RaycastHit2D h in hit)
+            {
+                if (h.transform != transform)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+        return false;
+        //var directionToPlayer = _player.transform.position - transform.position;
+        //return Vector3.Angle(Front, directionToPlayer) < 10;
+    }
+
+    private RaycastHit2D isEnemyInSight()
+    {
+        float distance = _collisionAvoidDetectionReach;
+        RaycastHit2D closestHit = default;
+        RaycastHit2D hit = raycast(_rayCastPointL.position, Quaternion.Euler(0, 0, 30) * Front, distance, LayerMask.GetMask("Enemy"), true);
+        closestHit = getCloserHit(hit, closestHit);
+        hit = raycast(_rayCastPointL.position, Front, distance, LayerMask.GetMask("Enemy"), true);
+        closestHit = getCloserHit(hit, closestHit);
+        hit = raycast(_rayCastPointM.position, Front, distance, LayerMask.GetMask("Enemy"), true);
+        closestHit = getCloserHit(hit, closestHit);
+        hit = raycast(_rayCastPointR.position, Front, distance, LayerMask.GetMask("Enemy"), true);
+        closestHit = getCloserHit(hit, closestHit);
+        hit = hit = raycast(_rayCastPointR.position, Quaternion.Euler(0, 0, -30) * Front, distance, LayerMask.GetMask("Enemy"), true);
+        closestHit = getCloserHit(hit, closestHit);
+
+        //if (closestHit)
+        //{
+        //    return closestHit.transform.gameObject.GetComponent<Enemy>();
+        //}
+        //return null;
+        return closestHit;
+    }
+
+    private RaycastHit2D getCloserHit(RaycastHit2D @new, RaycastHit2D old)
+    {
+        if (@new)
+        {
+            if (!old)
+            {
+                return @new;
+            }
+            else
+            {
+                if (@new.distance < old.distance)
+                {
+                    return @new;
+                }
+            }
+        }
+        return old;
+    }
+
+    private RaycastHit2D raycast(Vector3 start, Vector3 dir, float dist, LayerMask mask, bool debugLine)
+    {
+        RaycastHit2D result = Physics2D.Raycast(start, dir, dist, mask);
+        if (!debugLine) return result;
+        Debug.DrawLine(start, start + dir.normalized * dist, Color.yellow);
+        return result;
     }
 
     private IEnumerator Shoot()
@@ -159,4 +255,53 @@ public class Enemy : MonoBehaviour, IFront
             }
         }
     }
+
+    private IEnumerator PreventCollision()
+    {
+        while (true)
+        {
+            RaycastHit2D h = isEnemyInSight();
+            if (h)
+            {
+                Enemy e = h.transform.GetComponent<Enemy>();
+                if (e == null) goto NextCycle;
+                if (_enemiesInSight.ContainsKey(e))
+                {
+                    if (_enemiesInSight[e] > h.distance)
+                    {
+                        //enemy is getting closer
+                        float coeff = h.distance / _collisionAvoidDetectionReach;
+                        if (Vector3.Cross(Front, e.Dir).z < 0)
+                        {
+                            //enemy goes from left to right
+                            _movementDir = Quaternion.Euler(0, 0, 60 - 30 * coeff) * Front;
+                        }
+                        else
+                        {
+                            //enemy goes from right to left 
+                            _movementDir = Quaternion.Euler(0, 0, -60 + 30 * coeff) * Front;
+                        }
+                    }
+                    else
+                    {
+                        //enemy is not getting closer
+                        _movementDir = Front;
+                    }
+                }
+                else
+                {
+                    _enemiesInSight[e] = h.distance;
+                }
+            }
+            else
+            {
+                _movementDir = Front;
+            }
+
+        NextCycle:
+            yield return new WaitForSeconds(0.25f);
+        }
+    }
+
+    private Dictionary<Enemy, float> _enemiesInSight = new Dictionary<Enemy, float>(10);
 }

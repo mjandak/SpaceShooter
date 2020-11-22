@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5023626728233291018}
   - component: {fileID: 5023626728233291030}
   - component: {fileID: 5023626728233291031}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -205,7 +205,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5888328033086462174}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Laser2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -235,7 +235,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3296195081914808000}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Laser1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -323,6 +323,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Engine
       objectReference: {fileID: 0}
+    - target: {fileID: 4251198109266681828, guid: 544b2ad8d8324aa429514f61d97403aa,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 544b2ad8d8324aa429514f61d97403aa, type: 3}
 --- !u!1 &2801374057438792506 stripped
@@ -403,6 +408,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Explosion
+      objectReference: {fileID: 0}
+    - target: {fileID: 1548114892546974542, guid: ee19b69ccf3ceaa42a311dd0afc02982,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee19b69ccf3ceaa42a311dd0afc02982, type: 3}

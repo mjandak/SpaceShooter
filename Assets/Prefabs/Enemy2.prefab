@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3860093903398495484}
   - component: {fileID: 3968245898180411752}
   - component: {fileID: 2123498882113802120}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: spaceShips_005_split_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -194,7 +194,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4152950406424001971}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Laser1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -228,7 +228,7 @@ GameObject:
   - component: {fileID: 5023626728233291018}
   - component: {fileID: 5023626728233291030}
   - component: {fileID: 5023626728233291031}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Enemy2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -478,7 +478,7 @@ GameObject:
   - component: {fileID: 4186893195753859716}
   - component: {fileID: 2189724200719322799}
   - component: {fileID: 435258210016114352}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: spaceShips_005_split_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -698,7 +698,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6564024522719875883}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Laser2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -785,6 +785,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Explosion
+      objectReference: {fileID: 0}
+    - target: {fileID: 1548114892546974542, guid: ee19b69ccf3ceaa42a311dd0afc02982,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee19b69ccf3ceaa42a311dd0afc02982, type: 3}
