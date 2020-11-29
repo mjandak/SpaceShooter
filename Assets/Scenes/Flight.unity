@@ -1232,7 +1232,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7c97179a481a4b74cb64bb2c52c0b355, type: 2}
+  - {fileID: 2100000, guid: a58e346576950d04c9609d8b510c2052, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1289,6 +1289,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ScrollSpeed: 0.1
+  ScrollSpeed2: 0.08
 --- !u!1 &1141419544
 GameObject:
   m_ObjectHideFlags: 0
@@ -1600,7 +1601,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1610696985}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 77e0cc78e011bf744a78282dfc2bd022, type: 3}
   m_Name: 
@@ -1633,10 +1634,6 @@ MonoBehaviour:
   Start_Max: {fileID: 162732460}
   Target_Min: {fileID: 1977183362}
   Target_Max: {fileID: 75478961}
-  FlightLength: 30
-  ArrivingLabel: {fileID: 427656875}
-  BossKiller: {fileID: 1730017699}
-  HitPointsLabel: {fileID: 4588716409269133646}
 --- !u!4 &1610696987
 Transform:
   m_ObjectHideFlags: 0
@@ -2608,15 +2605,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ced7cbe4b19142440ad8062c670426bd, type: 3}
---- !u!114 &4588716409269133646 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4588716409591339990, guid: ced7cbe4b19142440ad8062c670426bd,
-    type: 3}
-  m_PrefabInstance: {fileID: 4588716409269133645}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd513c90799b02e4eb163a07a8c8903d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
