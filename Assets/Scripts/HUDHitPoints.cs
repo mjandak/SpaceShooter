@@ -13,9 +13,10 @@ public class HUDHitPoints : MonoBehaviour
     private void Awake()
     {
         _text.text = new string('I', Map.State.PlayerHitPoints);
+        Map.State.HitPointsChanged += refresh;
     }
 
-    public void Refresh()
+    private void refresh()
     {
         _text.text = new string('I', Map.State.PlayerHitPoints);
     }

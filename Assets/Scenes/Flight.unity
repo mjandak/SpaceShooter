@@ -980,7 +980,7 @@ Transform:
   - {fileID: 523222423}
   - {fileID: 678580426}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &873310218 stripped
 Transform:
@@ -1411,7 +1411,7 @@ RectTransform:
   m_Children:
   - {fileID: 768391834}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1573,7 +1573,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1610696985
 GameObject:
@@ -1584,9 +1584,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1610696987}
+  - component: {fileID: 1610696988}
   - component: {fileID: 1610696986}
   m_Layer: 0
-  m_Name: Spawner
+  m_Name: Scripts
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1652,8 +1653,24 @@ Transform:
   - {fileID: 1705827700}
   - {fileID: 162732460}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1610696988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1610696985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4568b7aa56a74547ada1e27b6a15eb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FlightLength: 30
+  ArrivingLabel: {fileID: 427656875}
+  BossKiller: {fileID: 1730017699}
+  _spawner: {fileID: 1610696986}
 --- !u!1 &1693140072
 GameObject:
   m_ObjectHideFlags: 0
@@ -1759,7 +1776,7 @@ PrefabInstance:
     - target: {fileID: 1849662024335173785, guid: 2e3d96c23708af34286bfc96dd2ce119,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1849662024335173785, guid: 2e3d96c23708af34286bfc96dd2ce119,
         type: 3}
@@ -2051,7 +2068,7 @@ Transform:
   - {fileID: 35052686}
   - {fileID: 62533027}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1873927870
 GameObject:

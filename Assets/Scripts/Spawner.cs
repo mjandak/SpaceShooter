@@ -24,14 +24,14 @@ public class Spawner : MonoBehaviour
     /// <summary>
     /// Planet id player is moving to.
     /// </summary>
-    public static string TargetPlanet;
-    public static bool EnablesPlayerToDefeatBoss;
-    public static bool ResetsPlayerHitPoints;
-    [Tooltip("Length of flight in seconds.")]
-    public float FlightLength;
-    public GameObject ArrivingLabel;
-    public GameObject BossKiller;
-    public HUDHitPoints HitPointsLabel;
+    //public static string TargetPlanet;
+    //public static bool EnablesPlayerToDefeatBoss;
+    //public static bool ResetsPlayerHitPoints;
+    //[Tooltip("Length of flight in seconds.")]
+    //public float FlightLength;
+    //public GameObject ArrivingLabel;
+    //public GameObject BossKiller;
+    //public HUDHitPoints HitPointsLabel;
 
     private void Awake()
     {
@@ -58,10 +58,10 @@ public class Spawner : MonoBehaviour
     {
         _player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         _player.HasDied += () => { Invoke(nameof(Player_HasDied), 3f); };
-        _player.Hit += (hitPoints) => { Map.State.SetPlayerHitPoints(hitPoints); HitPointsLabel.Refresh(); };
+        _player.Hit += (hitPoints) => { Map.State.SetPlayerHitPoints(hitPoints); };
         _player.HitPoints = Map.State.PlayerHitPoints;
         StartCoroutine(nameof(Spawn));
-        StartCoroutine(nameof(EndFlight));
+        //StartCoroutine(nameof(EndFlight));
     }
 
     private void Player_HasDied()
@@ -120,25 +120,30 @@ public class Spawner : MonoBehaviour
         return _intervals[_index.FindIdx(p)].Enemy;
     }
 
-    private IEnumerator EndFlight()
-    {
-        yield return new WaitForSeconds(FlightLength);
-        StopCoroutine(nameof(Spawn));
-        if (ResetsPlayerHitPoints)
-        {
-            Map.State.ResetPlayerHitPoints();
-        }
-        if (EnablesPlayerToDefeatBoss && !Map.State.CanPlayerDefeatBoss)
-        {
-            BossKiller.SetActive(true);
-        }
-        else
-        {
-            ArrivingLabel.SetActive(true);
-            yield return new WaitForSeconds(5f);
-            SceneManager.LoadScene("Map");
-        }
+    //private IEnumerator EndFlight()
+    //{
+    //    yield return new WaitForSeconds(FlightLength);
+    //    StopCoroutine(nameof(Spawn));
+    //    if (ResetsPlayerHitPoints)
+    //    {
+    //        Map.State.ResetPlayerHitPoints();
+    //    }
+    //    if (EnablesPlayerToDefeatBoss && !Map.State.CanPlayerDefeatBoss)
+    //    {
+    //        BossKiller.SetActive(true);
+    //    }
+    //    else
+    //    {
+    //        ArrivingLabel.SetActive(true);
+    //        yield return new WaitForSeconds(5f);
+    //        SceneManager.LoadScene("Map");
+    //    }
 
+    //}
+
+    public void Stop()
+    {
+        StopCoroutine(nameof(Spawn));
     }
 }
 

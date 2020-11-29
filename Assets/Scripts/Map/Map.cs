@@ -173,9 +173,9 @@ namespace SpaceMap
                 return;
             }
             State.Visited.Add(planetId);
-            Spawner.TargetPlanet = planetId;
-            Spawner.EnablesPlayerToDefeatBoss = planet.EnablesPlayerToDefeatBoss;
-            Spawner.ResetsPlayerHitPoints = planet.ResetsPlayerHitPoints;
+            FlightScene.TargetPlanet = planetId;
+            FlightScene.EnablesPlayerToDefeatBoss = planet.EnablesPlayerToDefeatBoss;
+            FlightScene.ResetsPlayerHitPoints = planet.ResetsPlayerHitPoints;
             SceneManager.LoadScene("Flight");
             return;
         }
@@ -413,15 +413,18 @@ namespace SpaceMap
         public string BossPreviousPlanet;
         public ushort? PreviousDistance;
         public ushort PlayerHitPoints;
+        public event Action HitPointsChanged;
 
         public void ResetPlayerHitPoints()
         {
             PlayerHitPoints = 6;
+            HitPointsChanged?.Invoke();
         }
 
         public void SetPlayerHitPoints(ushort amount)
         {
             PlayerHitPoints = amount;
+            HitPointsChanged?.Invoke();
         }
     }
 }

@@ -12,12 +12,13 @@ public class BossKiller : MonoBehaviour
 
     private IEnumerator OnTriggerEnter2D(Collider2D collision)
     {
+        if (!collision.gameObject.CompareTag("Player")) yield break;
         _bossKillerFoundInfo.SetActive(true);
         GetComponent<SpriteRenderer>().enabled = false;
         GetComponent<Collider2D>().enabled = false;
         yield return new WaitForSeconds(5f);
         Map.State.CanPlayerDefeatBoss = true;
-        Map.State.PlayerPosition = Spawner.TargetPlanet;
-        SceneManager.LoadScene("Map");
+        Map.State.PlayerPosition = FlightScene.TargetPlanet;
+        FlightScene.GoToMapScene();
     }
 }
