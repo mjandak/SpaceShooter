@@ -72,3 +72,4 @@ crashlytics-build.properties
 
 /[Aa]ssets/[Ii]mports/
 /[Bb]uild/
+.vsconfig

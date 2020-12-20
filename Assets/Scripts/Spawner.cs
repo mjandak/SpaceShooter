@@ -93,7 +93,11 @@ public class Spawner : MonoBehaviour
                 float gap = i * def.Gap;
                 GameObject enemy = Instantiate(def.Prefab, new Vector2(spawnPosition.x + gap, spawnPosition.y), Quaternion.identity);
                 Vector3 target = new Vector2(_player.transform.position.x + gap, _player.transform.position.y);
-                enemy.GetComponent<Enemy>().Front = (target - enemy.transform.position).normalized;
+                Enemy enemyScript = enemy.GetComponent<Enemy>();
+                if (enemyScript)
+                {
+                    enemyScript.Front = (target - enemy.transform.position).normalized;
+                }
             }
 
             //yield return new WaitForSeconds(1f);

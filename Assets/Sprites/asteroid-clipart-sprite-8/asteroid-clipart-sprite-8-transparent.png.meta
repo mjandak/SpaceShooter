@@ -1,0 +1,862 @@
+fileFormatVersion: 2
+guid: 52dc3244870249640b4d84d65439f4b1
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7735254790554260199
+    second: asteroid-clipart-sprite-8-transparent_0
+  - first:
+      213: -1766407254340284496
+    second: asteroid-clipart-sprite-8-transparent_1
+  - first:
+      213: -1651827616184799084
+    second: asteroid-clipart-sprite-8-transparent_2
+  - first:
+      213: 3458347377500938991
+    second: asteroid-clipart-sprite-8-transparent_3
+  - first:
+      213: 1221918400799291425
+    second: asteroid-clipart-sprite-8-transparent_4
+  - first:
+      213: -6360757940395057175
+    second: asteroid-clipart-sprite-8-transparent_5
+  - first:
+      213: -6606520395177582700
+    second: asteroid-clipart-sprite-8-transparent_6
+  - first:
+      213: -5559541899961013402
+    second: asteroid-clipart-sprite-8-transparent_7
+  - first:
+      213: 55458027402312478
+    second: asteroid-clipart-sprite-8-transparent_8
+  - first:
+      213: -3285485266917579176
+    second: asteroid-clipart-sprite-8-transparent_9
+  - first:
+      213: 6136103985443273921
+    second: asteroid-clipart-sprite-8-transparent_10
+  - first:
+      213: 9215046396484804139
+    second: asteroid-clipart-sprite-8-transparent_11
+  - first:
+      213: 1592745889468877280
+    second: asteroid-clipart-sprite-8-transparent_12
+  - first:
+      213: 8527200774334706806
+    second: asteroid-clipart-sprite-8-transparent_13
+  - first:
+      213: -4584166208444498005
+    second: asteroid-clipart-sprite-8-transparent_14
+  - first:
+      213: -2294623337119167878
+    second: asteroid-clipart-sprite-8-transparent_15
+  - first:
+      213: 6915614662587793484
+    second: asteroid-clipart-sprite-8-transparent_16
+  - first:
+      213: -5957751973441805315
+    second: asteroid-clipart-sprite-8-transparent_17
+  - first:
+      213: -2680382521756809227
+    second: asteroid-clipart-sprite-8-transparent_18
+  - first:
+      213: 2366489679676205904
+    second: asteroid-clipart-sprite-8-transparent_19
+  - first:
+      213: -1817549539221473170
+    second: asteroid-clipart-sprite-8-transparent_20
+  - first:
+      213: 6257100167208622487
+    second: asteroid-clipart-sprite-8-transparent_21
+  - first:
+      213: 7828849614713935342
+    second: asteroid-clipart-sprite-8-transparent_22
+  - first:
+      213: 6183459661075818329
+    second: asteroid-clipart-sprite-8-transparent_23
+  - first:
+      213: -7354106916820989773
+    second: asteroid-clipart-sprite-8-transparent_24
+  - first:
+      213: 3760629563120056938
+    second: asteroid-clipart-sprite-8-transparent_25
+  - first:
+      213: 835170735792609241
+    second: asteroid-clipart-sprite-8-transparent_26
+  - first:
+      213: -6969341388971529265
+    second: asteroid-clipart-sprite-8-transparent_27
+  - first:
+      213: 4047382602948862773
+    second: asteroid-clipart-sprite-8-transparent_28
+  - first:
+      213: -5683535146459540458
+    second: asteroid-clipart-sprite-8-transparent_29
+  - first:
+      213: -17631405954816656
+    second: asteroid-clipart-sprite-8-transparent_30
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: asteroid-clipart-sprite-8-transparent_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 283
+        width: 287
+        height: 467
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e21026bf35295b60800000000000000
+      internalID: 7735254790554260199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: asteroid-clipart-sprite-8-transparent_1
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 561
+        width: 10
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0bfcf5406f57c77e0800000000000000
+      internalID: -1766407254340284496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: asteroid-clipart-sprite-8-transparent_2
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 513
+        width: 486
+        height: 237
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 490ff1be8878319e0800000000000000
+      internalID: -1651827616184799084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: asteroid-clipart-sprite-8-transparent_3
+      rect:
+        serializedVersion: 2
+        x: 785
+        y: 520
+        width: 307
+        height: 230
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe2e8d1ed948eff20800000000000000
+      internalID: 3458347377500938991
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: asteroid-clipart-sprite-8-transparent_4
+      rect:
+        serializedVersion: 2
+        x: 1092
+        y: 493
+        width: 269
+        height: 257
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 128b720cf4025f010800000000000000
+      internalID: 1221918400799291425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: asteroid-clipart-sprite-8-transparent_5
+      rect:
+        serializedVersion: 2
+        x: 1364
+        y: 559
+        width: 230
+        height: 191
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9efd18c9a5c0ab7a0800000000000000
+      internalID: -6360757940395057175
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: asteroid-clipart-sprite-8-transparent_6
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 486
+        width: 37
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49f111414bce054a0800000000000000
+      internalID: -6606520395177582700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: asteroid-clipart-sprite-8-transparent_7
+      rect:
+        serializedVersion: 2
+        x: 1092
+        y: 479
+        width: 97
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66b6ce2091a88d2b0800000000000000
+      internalID: -5559541899961013402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: asteroid-clipart-sprite-8-transparent_8
+      rect:
+        serializedVersion: 2
+        x: 1359
+        y: 477
+        width: 117
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1b324738c605c000800000000000000
+      internalID: 55458027402312478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: asteroid-clipart-sprite-8-transparent_9
+      rect:
+        serializedVersion: 2
+        x: 1476
+        y: 481
+        width: 121
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85629969e8c9762d0800000000000000
+      internalID: -3285485266917579176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: asteroid-clipart-sprite-8-transparent_10
+      rect:
+        serializedVersion: 2
+        x: 282
+        y: 288
+        width: 169
+        height: 187
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1cc74357012d72550800000000000000
+      internalID: 6136103985443273921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: asteroid-clipart-sprite-8-transparent_11
+      rect:
+        serializedVersion: 2
+        x: 451
+        y: 344
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2e583bcfdb62ef70800000000000000
+      internalID: 9215046396484804139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: asteroid-clipart-sprite-8-transparent_12
+      rect:
+        serializedVersion: 2
+        x: 459
+        y: 295
+        width: 226
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e9814f92f19a1610800000000000000
+      internalID: 1592745889468877280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: asteroid-clipart-sprite-8-transparent_13
+      rect:
+        serializedVersion: 2
+        x: 685
+        y: 299
+        width: 236
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 674f7aadce3b65670800000000000000
+      internalID: 8527200774334706806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: asteroid-clipart-sprite-8-transparent_14
+      rect:
+        serializedVersion: 2
+        x: 922
+        y: 302
+        width: 185
+        height: 173
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: baff0521f15c160c0800000000000000
+      internalID: -4584166208444498005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: asteroid-clipart-sprite-8-transparent_15
+      rect:
+        serializedVersion: 2
+        x: 1107
+        y: 302
+        width: 138
+        height: 173
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7ac0b97b3cd720e0800000000000000
+      internalID: -2294623337119167878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: asteroid-clipart-sprite-8-transparent_16
+      rect:
+        serializedVersion: 2
+        x: 1247
+        y: 313
+        width: 351
+        height: 162
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c40470725e239ff50800000000000000
+      internalID: 6915614662587793484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: asteroid-clipart-sprite-8-transparent_17
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 130
+        width: 560
+        height: 153
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df36e1b4520d15da0800000000000000
+      internalID: -5957751973441805315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: asteroid-clipart-sprite-8-transparent_18
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 136
+        width: 171
+        height: 147
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f705883c4e5dcad0800000000000000
+      internalID: -2680382521756809227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: asteroid-clipart-sprite-8-transparent_19
+      rect:
+        serializedVersion: 2
+        x: 734
+        y: 139
+        width: 147
+        height: 144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05b6ab153d577d020800000000000000
+      internalID: 2366489679676205904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: asteroid-clipart-sprite-8-transparent_20
+      rect:
+        serializedVersion: 2
+        x: 881
+        y: 140
+        width: 264
+        height: 143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e687709e254c6c6e0800000000000000
+      internalID: -1817549539221473170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: asteroid-clipart-sprite-8-transparent_21
+      rect:
+        serializedVersion: 2
+        x: 1145
+        y: 141
+        width: 313
+        height: 142
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 799d186537fa5d650800000000000000
+      internalID: 6257100167208622487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: asteroid-clipart-sprite-8-transparent_22
+      rect:
+        serializedVersion: 2
+        x: 1458
+        y: 147
+        width: 139
+        height: 136
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee55afcde39a5ac60800000000000000
+      internalID: 7828849614713935342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: asteroid-clipart-sprite-8-transparent_23
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 141
+        height: 130
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 957a165eccf00d550800000000000000
+      internalID: 6183459661075818329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: asteroid-clipart-sprite-8-transparent_24
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 0
+        width: 183
+        height: 130
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b844ae09b6f0f990800000000000000
+      internalID: -7354106916820989773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: asteroid-clipart-sprite-8-transparent_25
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 21
+        width: 123
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6a7a99b9a0703430800000000000000
+      internalID: 3760629563120056938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: asteroid-clipart-sprite-8-transparent_26
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 24
+        width: 116
+        height: 106
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d758b9fb5f179b00800000000000000
+      internalID: 835170735792609241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: asteroid-clipart-sprite-8-transparent_27
+      rect:
+        serializedVersion: 2
+        x: 565
+        y: 27
+        width: 139
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fcbacef8eece74f90800000000000000
+      internalID: -6969341388971529265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: asteroid-clipart-sprite-8-transparent_28
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 29
+        width: 128
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 533ecde88013b2830800000000000000
+      internalID: 4047382602948862773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: asteroid-clipart-sprite-8-transparent_29
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 30
+        width: 128
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 614d4de95e60021b0800000000000000
+      internalID: -5683535146459540458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: asteroid-clipart-sprite-8-transparent_30
+      rect:
+        serializedVersion: 2
+        x: 963
+        y: 59
+        width: 93
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0752c27645c51cff0800000000000000
+      internalID: -17631405954816656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

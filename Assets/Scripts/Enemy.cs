@@ -175,11 +175,15 @@ public class Enemy : MonoBehaviour, IFront
         RaycastHit2D closestHit = default;
         RaycastHit2D hit = raycast(_rayCastPointL.position, Quaternion.Euler(0, 0, 30) * Front, distance, LayerMask.GetMask("Enemy"), true);
         closestHit = getCloserHit(hit, closestHit);
+        hit = raycast(_rayCastPointL.position, Quaternion.Euler(0, 0, 15) * Front, distance, LayerMask.GetMask("Enemy"), true);
+        closestHit = getCloserHit(hit, closestHit);
         hit = raycast(_rayCastPointL.position, Front, distance, LayerMask.GetMask("Enemy"), true);
         closestHit = getCloserHit(hit, closestHit);
         hit = raycast(_rayCastPointM.position, Front, distance, LayerMask.GetMask("Enemy"), true);
         closestHit = getCloserHit(hit, closestHit);
         hit = raycast(_rayCastPointR.position, Front, distance, LayerMask.GetMask("Enemy"), true);
+        closestHit = getCloserHit(hit, closestHit);
+        hit = raycast(_rayCastPointR.position, Quaternion.Euler(0, 0, -15) * Front, distance, LayerMask.GetMask("Enemy"), true);
         closestHit = getCloserHit(hit, closestHit);
         hit = hit = raycast(_rayCastPointR.position, Quaternion.Euler(0, 0, -30) * Front, distance, LayerMask.GetMask("Enemy"), true);
         closestHit = getCloserHit(hit, closestHit);
@@ -264,7 +268,9 @@ public class Enemy : MonoBehaviour, IFront
             if (h)
             {
                 Enemy e = h.transform.GetComponent<Enemy>();
+
                 if (e == null) goto NextCycle;
+
                 if (_enemiesInSight.ContainsKey(e))
                 {
                     if (_enemiesInSight[e] > h.distance)
@@ -275,11 +281,23 @@ public class Enemy : MonoBehaviour, IFront
                         {
                             //enemy goes from left to right
                             _movementDir = Quaternion.Euler(0, 0, 60 - 30 * coeff) * Front;
+                            float nextDist = _rb.velocity.magnitude * 0.25f;
+                            float distance = _collider.Distance(e._collider).distance;
+                            if (nextDist > distance)
+                            {
+                                _movementDir = Quaternion.Euler(0, 0, -60 + 30 * coeff) * Front;
+                            }
                         }
                         else
                         {
                             //enemy goes from right to left 
                             _movementDir = Quaternion.Euler(0, 0, -60 + 30 * coeff) * Front;
+                            float nextDist = _rb.velocity.magnitude * 0.25f;
+                            float distance = _collider.Distance(e._collider).distance;
+                            if (nextDist > distance)
+                            {
+                                _movementDir = Quaternion.Euler(0, 0, 60 - 30 * coeff) * Front;
+                            }
                         }
                     }
                     else
