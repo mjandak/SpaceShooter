@@ -16,8 +16,8 @@ public class FlightScene : MonoBehaviour
     [Tooltip("Length of flight in seconds.")]
     public float FlightLength;
 
-    [SerializeField] private GameObject ArrivingLabel;
-    [SerializeField] private GameObject BossKiller;
+    [SerializeField] private GameObject _arrivingLabel;
+    [SerializeField] private GameObject _bossKiller;
     [SerializeField] private Spawner _spawner;
 
     // Start is called before the first frame update
@@ -43,11 +43,11 @@ public class FlightScene : MonoBehaviour
         if (_spawner.enabled) _spawner.Stop();
         if (EnablesPlayerToDefeatBoss && !Map.State.CanPlayerDefeatBoss)
         {
-            BossKiller.SetActive(true);
+            _bossKiller.SetActive(true);
         }
         else
         {
-            ArrivingLabel.SetActive(true);
+            _arrivingLabel.SetActive(true);
             yield return new WaitForSeconds(5f);
             GoToMapScene();
         }

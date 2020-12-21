@@ -280,23 +280,52 @@ public class Enemy : MonoBehaviour, IFront
                         if (Vector3.Cross(Front, e.Dir).z < 0)
                         {
                             //enemy goes from left to right
-                            _movementDir = Quaternion.Euler(0, 0, 60 - 30 * coeff) * Front;
-                            float nextDist = _rb.velocity.magnitude * 0.25f;
+                            Debug.Log($"enemy goes from left to right, object {gameObject.GetInstanceID()}");
+                            float nextStepDist = _rb.velocity.magnitude * 0.25f;
                             float distance = _collider.Distance(e._collider).distance;
-                            if (nextDist > distance)
+                            if (nextStepDist > distance)
                             {
-                                _movementDir = Quaternion.Euler(0, 0, -60 + 30 * coeff) * Front;
+                                if (Vector3.Cross(Front, e.transform.position - transform.position).z < 0)
+                                {
+                                    //enemy is on the right
+                                    _movementDir = Quaternion.Euler(0, 0, 60 - 30 * coeff) * Front;
+                                    Debug.Log($"dodging to left, object {gameObject.GetInstanceID()}");
+                                }
+                                else
+                                {
+                                    _movementDir = Quaternion.Euler(0, 0, -60 + 30 * coeff) * Front;
+                                    Debug.Log($"dodging to right, object {gameObject.GetInstanceID()}");
+                                }
+                            }
+                            else
+                            {
+                                _movementDir = Quaternion.Euler(0, 0, 60 - 30 * coeff) * Front;
+                                Debug.Log($"dodging to left, object {gameObject.GetInstanceID()}");
                             }
                         }
                         else
                         {
                             //enemy goes from right to left 
-                            _movementDir = Quaternion.Euler(0, 0, -60 + 30 * coeff) * Front;
-                            float nextDist = _rb.velocity.magnitude * 0.25f;
+                            Debug.Log($"enemy goes from right to left, object {gameObject.GetInstanceID()}");
+                            float nextStepDist = _rb.velocity.magnitude * 0.25f;
                             float distance = _collider.Distance(e._collider).distance;
-                            if (nextDist > distance)
+                            if (nextStepDist > distance)
                             {
-                                _movementDir = Quaternion.Euler(0, 0, 60 - 30 * coeff) * Front;
+                                if (Vector3.Cross(Front, e.transform.position - transform.position).z < 0)
+                                {
+                                    _movementDir = Quaternion.Euler(0, 0, 60 - 30 * coeff) * Front;
+                                    Debug.Log($"dodging to left, object {gameObject.GetInstanceID()}");
+                                }
+                                else
+                                {
+                                    _movementDir = Quaternion.Euler(0, 0, -60 + 30 * coeff) * Front;
+                                    Debug.Log($"dodging to right, object {gameObject.GetInstanceID()}");
+                                }
+                            }
+                            else
+                            {
+                                _movementDir = Quaternion.Euler(0, 0, -60 + 30 * coeff) * Front;
+                                Debug.Log($"dodging to right, object {gameObject.GetInstanceID()}");
                             }
                         }
                     }
