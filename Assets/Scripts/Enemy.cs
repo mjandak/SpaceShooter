@@ -88,22 +88,39 @@ public class Enemy : MonoBehaviour, IFront
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log($"relative velocity: {collision.relativeVelocity.magnitude}");
+        //Debug.Log($"relative velocity: {collision.relativeVelocity.magnitude}");
         if (collision.relativeVelocity.magnitude < 2) return;
-        if (_hitPoints == 0) return;
-        checked
+        if (collision.gameObject.CompareTag("Laser"))
         {
-            _hitPoints--;
+            DealDamage(1);
         }
-        if (_hitPoints < 1)
+        else if (collision.gameObject.CompareTag("BluePlasma"))
         {
-            Explode();
+            DealDamage(3);
+        }
+        else if (collision.gameObject.CompareTag("Mine"))
+        {
+            DealDamage(4);
+        }
+        else
+        {
+            DealDamage(1);
         }
     }
 
     private void OnBecameInvisible()
     {
         //Destroy(gameObject);
+    }
+
+    private void DealDamage(ushort hitPoints)
+    {
+        if (_hitPoints == 0) return;
+        checked
+        {
+            _hitPoints = (ushort)(_hitPoints - hitPoints);
+        }
+        if (_hitPoints < 1) Explode();
     }
 
     private void Explode()

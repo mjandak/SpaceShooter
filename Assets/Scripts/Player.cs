@@ -127,8 +127,25 @@ public class Player : MonoBehaviour, IFront
         if (collision.relativeVelocity.magnitude < 2) return;
         if (collision.gameObject.CompareTag("Wall")) return;
         if (collision.gameObject.CompareTag("Boss"))
+        {
             DealDamage(5);
-        DealDamage(1);
+        }
+        else if (collision.gameObject.CompareTag("Laser"))
+        {
+            DealDamage(1);
+        }
+        else if (collision.gameObject.CompareTag("BluePlasma"))
+        {
+            DealDamage(3);
+        }
+        else if (collision.gameObject.CompareTag("Mine"))
+        {
+            DealDamage(4);
+        }
+        else
+        {
+            DealDamage(1);
+        }
     }
 
     public void DealDamage(ushort points)

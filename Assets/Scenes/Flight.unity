@@ -1518,7 +1518,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1597630673 stripped
 Transform:
@@ -1560,27 +1560,32 @@ MonoBehaviour:
   Enemies:
   - Prefab: {fileID: 5023626728233291019, guid: f4370790401af2e4cba5f9f07bf2cc88,
       type: 3}
-    Probability: 0.2
+    Weight: 3
     MaxSpawnNumber: 1
     Gap: 0
   - Prefab: {fileID: 5023626728233291019, guid: 57f1f616e026215449c203f518a5a5a5,
       type: 3}
-    Probability: 0.2
+    Weight: 3
     MaxSpawnNumber: 1
     Gap: 5
   - Prefab: {fileID: 2773073870511923964, guid: 185dbc1421cb9ec47a3648f3f825982e,
       type: 3}
-    Probability: 0.2
+    Weight: 3
     MaxSpawnNumber: 2
     Gap: 4
   - Prefab: {fileID: 5023626728233291019, guid: 123bd187193fac844a77022fc67ef7bb,
       type: 3}
-    Probability: 0.2
+    Weight: 3
     MaxSpawnNumber: 2
     Gap: 5
   - Prefab: {fileID: 6218107936144531286, guid: 527cb679c5b2d7946a0a61019a46b057,
       type: 3}
-    Probability: 0.2
+    Weight: 3
+    MaxSpawnNumber: 1
+    Gap: 0
+  - Prefab: {fileID: 2773073870511923964, guid: e857ea042744db243ac1a4617ce00c3a,
+      type: 3}
+    Weight: 6
     MaxSpawnNumber: 1
     Gap: 0
   X_Min: -17
@@ -1713,7 +1718,7 @@ PrefabInstance:
     - target: {fileID: 1849662024335173785, guid: 2e3d96c23708af34286bfc96dd2ce119,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1849662024335173785, guid: 2e3d96c23708af34286bfc96dd2ce119,
         type: 3}
@@ -2006,7 +2011,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 7.1, y: 0, z: 0}
 --- !u!1 &1763479308
 GameObject:
@@ -2892,7 +2897,7 @@ PrefabInstance:
     - target: {fileID: 3458288852526545400, guid: d6c292281ab58de43a3c425bc5c542ce,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3458288852526545400, guid: d6c292281ab58de43a3c425bc5c542ce,
         type: 3}

@@ -39,6 +39,8 @@ public class Spawner : MonoBehaviour
 
         float minimum = 0;
 
+        float weightSum = Enemies.Sum(e => e.Weight);
+
         foreach (EnemySpawnDef e in Enemies)
         {
             var interval = new Interval
@@ -47,7 +49,7 @@ public class Spawner : MonoBehaviour
                 Enemy = e
             };
             _intervals.Add(interval);
-            minimum = interval.Minimum + e.Probability;
+            minimum = interval.Minimum + e.Weight / weightSum;
         }
 
         _index = new BinTree<float>(_intervals.Select(i => i.Minimum).ToArray());
@@ -218,7 +220,7 @@ public class BinTree<T> where T : IComparable
 public class EnemySpawnDef
 {
     public GameObject Prefab;
-    public float Probability;
+    public float Weight;
     public ushort MaxSpawnNumber;
     public float Gap;
 }
