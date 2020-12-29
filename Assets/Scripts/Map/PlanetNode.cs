@@ -81,8 +81,7 @@ namespace SpaceMap
             }
 
             if (!Neigbours.Contains(Map.State.PlayerPosition)) return;
-            _highlightedLink = Map.getLink($"{Map.State.PlayerPosition}|{name}");
-            if (_highlightedLink == null) _highlightedLink = Map.getLink($"{name}|{Map.State.PlayerPosition}");
+            _highlightedLink = Map.getLink(Map.State.PlayerPosition, name);
             _highlightedLink.GetComponent<PlanetLink>().HighlightPath();
         }
 

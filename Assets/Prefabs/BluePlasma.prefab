@@ -4916,10 +4916,10 @@ GameObject:
   - component: {fileID: 6860072757455630502}
   - component: {fileID: 6860072757455630503}
   - component: {fileID: 6860072757455630504}
-  - component: {fileID: 636227163595857814}
+  - component: {fileID: 1046984691478736553}
   - component: {fileID: 1019708609692605764}
   m_Layer: 8
-  m_Name: BlueFireball
+  m_Name: BluePlasma
   m_TagString: BluePlasma
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5025,12 +5025,12 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &636227163595857814
-CircleCollider2D:
+--- !u!70 &1046984691478736553
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -5042,9 +5042,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.0070540905}
-  serializedVersion: 2
-  m_Radius: 0.08945918
+  m_Offset: {x: 0.0037941933, y: 0.003794998}
+  m_Size: {x: 0.11511421, y: 0.13531344}
+  m_Direction: 0
 --- !u!96 &1019708609692605764
 TrailRenderer:
   serializedVersion: 2

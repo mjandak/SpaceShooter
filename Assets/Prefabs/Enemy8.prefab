@@ -341,7 +341,7 @@ MonoBehaviour:
   _rayCastPointR: {fileID: 6427479665400453255}
   _rayCastPointM: {fileID: 3900069101424009293}
   _collisionAvoidDetectionReach: 10
-  _hitPoints: 6
+  _hitPoints: 8
   Force: 100
   ShootRate: 0.3
 --- !u!1 &5980205358765609828

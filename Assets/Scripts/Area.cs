@@ -25,20 +25,12 @@ public class Area : MonoBehaviour
     {
         return !IsInside(point);
     }
-
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         L = center.x - width / 2;
         R = center.x + width / 2;
         U = center.y + height / 2;
         D = center.y - height / 2;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     private void OnDrawGizmos()

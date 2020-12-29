@@ -136,7 +136,7 @@ public class Player : MonoBehaviour, IFront
         }
         else if (collision.gameObject.CompareTag("BluePlasma"))
         {
-            DealDamage(3);
+            DealDamage(4);
         }
         else if (collision.gameObject.CompareTag("Mine"))
         {

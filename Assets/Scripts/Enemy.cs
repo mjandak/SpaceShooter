@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class Enemy : MonoBehaviour, IFront
+public class Enemy : MonoBehaviour, IFront, IObstacle
 {
     private float _downThrust = Consts.idle;
 
@@ -40,7 +40,7 @@ public class Enemy : MonoBehaviour, IFront
     public float Force;
     [Tooltip("Shooting rate in seconds.")]
     public float ShootRate;
-    public Vector2 Dir { get => _movementDir; }
+    
 
     /// <summary>
     /// Direction enemy is facing, normalized.
@@ -53,6 +53,12 @@ public class Enemy : MonoBehaviour, IFront
             transform.Rotate(Vector3.forward, Vector2.SignedAngle(Front, value));
         }
     }
+
+    public Vector2 Dir { get => _movementDir; }
+
+    public Transform Transform => transform;
+
+    public Collider2D Collider => _collider;
 
     // Start is called before the first frame update
     void Start()
@@ -96,7 +102,7 @@ public class Enemy : MonoBehaviour, IFront
         }
         else if (collision.gameObject.CompareTag("BluePlasma"))
         {
-            DealDamage(3);
+            DealDamage(4);
         }
         else if (collision.gameObject.CompareTag("Mine"))
         {
@@ -115,11 +121,7 @@ public class Enemy : MonoBehaviour, IFront
 
     private void DealDamage(ushort hitPoints)
     {
-        if (_hitPoints == 0) return;
-        checked
-        {
-            _hitPoints = (ushort)(_hitPoints - hitPoints);
-        }
+        _hitPoints = (ushort)Mathf.Max(_hitPoints - hitPoints, 0);
         if (_hitPoints < 1) Explode();
     }
 
@@ -284,7 +286,7 @@ public class Enemy : MonoBehaviour, IFront
             RaycastHit2D h = isEnemyInSight();
             if (h)
             {
-                Enemy e = h.transform.GetComponent<Enemy>();
+                IObstacle e = h.transform.GetComponent<IObstacle>();
 
                 if (e == null) goto NextCycle;
 
@@ -299,10 +301,10 @@ public class Enemy : MonoBehaviour, IFront
                             //enemy goes from left to right
                             Debug.Log($"enemy goes from left to right, object {gameObject.GetInstanceID()}");
                             float nextStepDist = _rb.velocity.magnitude * 0.25f;
-                            float distance = _collider.Distance(e._collider).distance;
+                            float distance = _collider.Distance(e.Collider).distance;
                             if (nextStepDist > distance)
                             {
-                                if (Vector3.Cross(Front, e.transform.position - transform.position).z < 0)
+                                if (Vector3.Cross(Front, e.Transform.position - transform.position).z < 0)
                                 {
                                     //enemy is on the right
                                     _movementDir = Quaternion.Euler(0, 0, 60 - 30 * coeff) * Front;
@@ -325,10 +327,10 @@ public class Enemy : MonoBehaviour, IFront
                             //enemy goes from right to left 
                             Debug.Log($"enemy goes from right to left, object {gameObject.GetInstanceID()}");
                             float nextStepDist = _rb.velocity.magnitude * 0.25f;
-                            float distance = _collider.Distance(e._collider).distance;
+                            float distance = _collider.Distance(e.Collider).distance;
                             if (nextStepDist > distance)
                             {
-                                if (Vector3.Cross(Front, e.transform.position - transform.position).z < 0)
+                                if (Vector3.Cross(Front, e.Transform.position - transform.position).z < 0)
                                 {
                                     _movementDir = Quaternion.Euler(0, 0, 60 - 30 * coeff) * Front;
                                     Debug.Log($"dodging to left, object {gameObject.GetInstanceID()}");
@@ -367,5 +369,5 @@ public class Enemy : MonoBehaviour, IFront
         }
     }
 
-    private Dictionary<Enemy, float> _enemiesInSight = new Dictionary<Enemy, float>(10);
+    private Dictionary<IObstacle, float> _enemiesInSight = new Dictionary<IObstacle, float>(10);
 }

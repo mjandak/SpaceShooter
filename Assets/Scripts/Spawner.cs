@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
@@ -13,7 +14,7 @@ public class Spawner : MonoBehaviour
     private BinTree<float> _index;
     private List<Interval> _intervals;
 
-    public List<EnemySpawnDef> Enemies;
+    //public List<EnemySpawnDef> Enemies;
     public float X_Min;
     public float X_Max;
     public float Y;
@@ -21,6 +22,7 @@ public class Spawner : MonoBehaviour
     public Transform Start_Max;
     public GameObject Target_Min;
     public GameObject Target_Max;
+    public SpawnerConfig Configuration;
     /// <summary>
     /// Planet id player is moving to.
     /// </summary>
@@ -36,12 +38,21 @@ public class Spawner : MonoBehaviour
     private void Awake()
     {
         _intervals = new List<Interval>();
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        if (!Configuration) throw new ArgumentNullException(nameof(Configuration));
+
+        _player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        _player.HasDied += () => { Invoke(nameof(Player_HasDied), 3f); };
+        _player.Hit += (hitPoints) => { Map.State.SetPlayerHitPoints(hitPoints); };
+        _player.HitPoints = Map.State.PlayerHitPoints;
 
         float minimum = 0;
-
-        float weightSum = Enemies.Sum(e => e.Weight);
-
-        foreach (EnemySpawnDef e in Enemies)
+        float weightSum = Configuration.Enemies.Sum(e => e.Weight);
+        foreach (EnemySpawnDef e in Configuration.Enemies)
         {
             var interval = new Interval
             {
@@ -51,17 +62,8 @@ public class Spawner : MonoBehaviour
             _intervals.Add(interval);
             minimum = interval.Minimum + e.Weight / weightSum;
         }
-
         _index = new BinTree<float>(_intervals.Select(i => i.Minimum).ToArray());
-    }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        _player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        _player.HasDied += () => { Invoke(nameof(Player_HasDied), 3f); };
-        _player.Hit += (hitPoints) => { Map.State.SetPlayerHitPoints(hitPoints); };
-        _player.HitPoints = Map.State.PlayerHitPoints;
         StartCoroutine(nameof(Spawn));
         //StartCoroutine(nameof(EndFlight));
     }

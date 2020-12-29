@@ -10,6 +10,7 @@ public class FlightScene : MonoBehaviour
     /// Planet id player is moving to.
     /// </summary>
     public static string TargetPlanet;
+    public static SpawnerConfig SpawnerConfig;
     public static bool EnablesPlayerToDefeatBoss;
     public static bool ResetsPlayerHitPoints;
 
@@ -19,6 +20,14 @@ public class FlightScene : MonoBehaviour
     [SerializeField] private GameObject _arrivingLabel;
     [SerializeField] private GameObject _bossKiller;
     [SerializeField] private Spawner _spawner;
+
+    private void Awake()
+    {
+        if (SpawnerConfig != null)
+        {
+            _spawner.Configuration = SpawnerConfig;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()

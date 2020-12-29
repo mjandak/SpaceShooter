@@ -12,6 +12,7 @@ namespace SpaceMap
 
         public GameObject A;
         public GameObject B;
+        public SpawnerConfig SpawnerConfig;
 
         // Start is called before the first frame update
         void Start()

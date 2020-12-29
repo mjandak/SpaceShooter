@@ -174,6 +174,7 @@ namespace SpaceMap
             }
             State.Visited.Add(planetId);
             FlightScene.TargetPlanet = planetId;
+            FlightScene.SpawnerConfig = getLink(State.PreviousPlanet, planetId).GetComponent<PlanetLink>().SpawnerConfig;
             FlightScene.EnablesPlayerToDefeatBoss = planet.EnablesPlayerToDefeatBoss;
             FlightScene.ResetsPlayerHitPoints = planet.ResetsPlayerHitPoints;
             SceneManager.LoadScene("Flight");
@@ -309,10 +310,12 @@ namespace SpaceMap
             return _planets[planetId].GetComponent<PlanetNode>();
         }
 
-        public static GameObject getLink(string id)
+        public static GameObject getLink(string A, string B)
         {
-            if (_links.ContainsKey(id))
-                return _links[id];
+            if (_links.ContainsKey($"{A}|{B}"))
+                return _links[$"{A}|{B}"];
+            if (_links.ContainsKey($"{B}|{A}"))
+                return _links[$"{B}|{A}"];
             return null;
         }
 
