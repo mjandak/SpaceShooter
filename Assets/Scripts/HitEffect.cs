@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class HitEffect : MonoBehaviour
 {
+    [Tooltip("Seconds elapsed before effect is destroyed.")]
+    public float DestroyTime;
+
     public Vector2 Front 
     { 
         get => transform.up; 

@@ -608,7 +608,7 @@ LightingSettings:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Settings.lighting
-  serializedVersion: 2
+  serializedVersion: 3
   m_GIWorkflowMode: 1
   m_EnableBakedLightmaps: 0
   m_EnableRealtimeLightmaps: 0
@@ -630,7 +630,7 @@ LightingSettings:
   m_MixedBakeMode: 2
   m_LightmapsBakeMode: 1
   m_FilterMode: 1
-  m_LightmapParameters: {fileID: 0}
+  m_LightmapParameters: {fileID: 15204, guid: 0000000000000000f000000000000000, type: 0}
   m_ExportTrainingData: 0
   m_TrainingDataDestination: TrainingData
   m_RealtimeResolution: 2
@@ -647,7 +647,7 @@ LightingSettings:
   m_PVREnvironmentReferencePointCount: 2048
   m_LightProbeSampleCountMultiplier: 4
   m_PVRBounces: 2
-  m_PVRRussianRouletteStartBounce: 2
+  m_PVRMinBounces: 1
   m_PVREnvironmentMIS: 0
   m_PVRFilteringMode: 2
   m_PVRDenoiserTypeDirect: 0
@@ -1162,6 +1162,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
 --- !u!223 &1161002803
 Canvas:
   m_ObjectHideFlags: 0
@@ -1557,41 +1558,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77e0cc78e011bf744a78282dfc2bd022, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Enemies:
-  - Prefab: {fileID: 5023626728233291019, guid: f4370790401af2e4cba5f9f07bf2cc88,
-      type: 3}
-    Weight: 0
-    MaxSpawnNumber: 1
-    Gap: 0
-  - Prefab: {fileID: 5023626728233291019, guid: 57f1f616e026215449c203f518a5a5a5,
-      type: 3}
-    Weight: 0
-    MaxSpawnNumber: 1
-    Gap: 5
-  - Prefab: {fileID: 2773073870511923964, guid: 185dbc1421cb9ec47a3648f3f825982e,
-      type: 3}
-    Weight: 0
-    MaxSpawnNumber: 2
-    Gap: 4
-  - Prefab: {fileID: 5023626728233291019, guid: 123bd187193fac844a77022fc67ef7bb,
-      type: 3}
-    Weight: 3
-    MaxSpawnNumber: 2
-    Gap: 5
-  - Prefab: {fileID: 6218107936144531286, guid: 527cb679c5b2d7946a0a61019a46b057,
-      type: 3}
-    Weight: 0
-    MaxSpawnNumber: 1
-    Gap: 0
-  - Prefab: {fileID: 2773073870511923964, guid: e857ea042744db243ac1a4617ce00c3a,
-      type: 3}
-    Weight: 6
-    MaxSpawnNumber: 1
-    Gap: 0
-  - Prefab: {fileID: 164530851580993052, guid: 59ed60c58121de94db788e8b62bfeed7, type: 3}
-    Weight: 3
-    MaxSpawnNumber: 1
-    Gap: 0
   X_Min: -17
   X_Max: 17
   Y: 12
@@ -2002,6 +1968,7 @@ Light:
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!4 &1763389052

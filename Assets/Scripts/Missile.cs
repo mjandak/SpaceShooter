@@ -56,7 +56,8 @@ public class Missile : MonoBehaviour
         particles.transform.SetParent(collision.transform, true);
         particles.transform.localScale = Vector3.one;
         Destroy(gameObject);
-        ParticleSystem ps = particles.GetComponent<ParticleSystem>();
-        Destroy(particles, ps.main.duration + ps.main.startLifetime.constant + 1f);
+        //ParticleSystem ps = particles.GetComponent<ParticleSystem>();
+        //Destroy(particles, ps.main.duration + ps.main.startLifetime.constant + 1f);
+        Destroy(particles, particles.GetComponent<HitEffect>().DestroyTime);
     }
 }
