@@ -2610,6 +2610,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 3
+    m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -4620,6 +4621,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
 --- !u!223 &1314887771
 Canvas:
   m_ObjectHideFlags: 0
@@ -5044,6 +5046,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 3
+    m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -6450,6 +6453,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RepairStation2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6067832248909462077, guid: 31cf68c2da1a10645a8d05ef6bea7a41,
+        type: 3}
+      propertyPath: GivesPlayerDoubleGun
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6067832248909462077, guid: 31cf68c2da1a10645a8d05ef6bea7a41,
+        type: 3}
+      propertyPath: ResetsPlayerHitPoints
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6067832248909462079, guid: 31cf68c2da1a10645a8d05ef6bea7a41,
         type: 3}

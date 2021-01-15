@@ -37,7 +37,7 @@ namespace SpaceMap
                 PlayerPosition = initPosition,
                 Visited = new List<string>() { initPosition }
             };
-            State.ResetPlayerHitPoints();
+            PlayerState.ResetHitPoints();
         }
 
         // Start is called before the first frame update
@@ -168,8 +168,8 @@ namespace SpaceMap
             if (planet.Visited)
             {
                 planet.MovePlayerHere();
-                if (planet.ResetsPlayerHitPoints) 
-                    State.ResetPlayerHitPoints();
+                if (planet.ResetsPlayerHitPoints)
+                    PlayerState.ResetHitPoints();
                 return;
             }
             State.Visited.Add(planetId);
@@ -177,6 +177,7 @@ namespace SpaceMap
             FlightScene.SpawnerConfig = getLink(State.PreviousPlanet, planetId).GetComponent<PlanetLink>().SpawnerConfig;
             FlightScene.EnablesPlayerToDefeatBoss = planet.EnablesPlayerToDefeatBoss;
             FlightScene.ResetsPlayerHitPoints = planet.ResetsPlayerHitPoints;
+            FlightScene.GivesPlayerDoubleGun = planet.GivesPlayerDoubleGun;
             SceneManager.LoadScene("Flight");
             return;
         }
@@ -415,20 +416,26 @@ namespace SpaceMap
         /// </summary>
         public string BossPreviousPlanet;
         public ushort? PreviousDistance;
-        public ushort PlayerHitPoints;
-        public event Action HitPointsChanged;
+    }
+}
 
-        public void ResetPlayerHitPoints()
-        {
-            PlayerHitPoints = 6;
-            HitPointsChanged?.Invoke();
-        }
+static class PlayerState
+{
+    private static ushort _hitPoints;
+    public static ushort HitPoints { get => _hitPoints; }
+    public static event Action HitPointsChanged;
+    public static bool HasDoubleGun;
 
-        public void SetPlayerHitPoints(ushort amount)
-        {
-            PlayerHitPoints = amount;
-            HitPointsChanged?.Invoke();
-        }
+    public static void ResetHitPoints()
+    {
+        _hitPoints = 6;
+        HitPointsChanged?.Invoke();
+    }
+
+    public static void SetHitPoints(ushort amount)
+    {
+        _hitPoints = amount;
+        HitPointsChanged?.Invoke();
     }
 }
 

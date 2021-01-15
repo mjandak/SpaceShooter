@@ -13,6 +13,7 @@ public class FlightScene : MonoBehaviour
     public static SpawnerConfig SpawnerConfig;
     public static bool EnablesPlayerToDefeatBoss;
     public static bool ResetsPlayerHitPoints;
+    public static bool GivesPlayerDoubleGun;
 
     [Tooltip("Length of flight in seconds.")]
     public float FlightLength;
@@ -64,7 +65,8 @@ public class FlightScene : MonoBehaviour
 
     public static void GoToMapScene()
     {
-        if (ResetsPlayerHitPoints) Map.State.ResetPlayerHitPoints();
+        if (ResetsPlayerHitPoints) PlayerState.ResetHitPoints();
+        PlayerState.HasDoubleGun |= GivesPlayerDoubleGun;
         SceneManager.LoadScene("Map");
     }
 }

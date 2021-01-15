@@ -37,6 +37,8 @@ public class Player : MonoBehaviour, IFront
     private GameObject _laserPrefab;
     [SerializeField]
     private GameObject _gunPosition;
+    [SerializeField]
+    private Transform[] _doubleGunPosition;
 
     [Header("Params")]
     public float Force;
@@ -111,9 +113,21 @@ public class Player : MonoBehaviour, IFront
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            var m = Instantiate(_laserPrefab, _gunPosition.transform.position, Quaternion.identity);
-            m.GetComponent<Missile>().Front = Vector2.up;
-            Physics2D.IgnoreCollision(m.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+            if (PlayerState.HasDoubleGun)
+            {
+                foreach (Transform g in _doubleGunPosition)
+                {
+                    var m = Instantiate(_laserPrefab, g.position, Quaternion.identity);
+                    m.GetComponent<Missile>().Front = Vector2.up;
+                    Physics2D.IgnoreCollision(m.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+                }
+            }
+            else
+            {
+                var m = Instantiate(_laserPrefab, _gunPosition.transform.position, Quaternion.identity);
+                m.GetComponent<Missile>().Front = Vector2.up;
+                Physics2D.IgnoreCollision(m.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+            }
         }
 
         prevLeft = left;

@@ -19,10 +19,10 @@ namespace SpaceMap
         private GameObject _highlightedLink;
         private Color _initSpriteColor;
 
-        [HideInInspector]
-        public List<string> Neigbours;
+        [HideInInspector] public List<string> Neigbours;
         public bool EnablesPlayerToDefeatBoss;
         public bool ResetsPlayerHitPoints;
+        public bool GivesPlayerDoubleGun;
 
         public bool Visited
         {

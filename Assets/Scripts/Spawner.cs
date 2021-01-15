@@ -47,8 +47,8 @@ public class Spawner : MonoBehaviour
 
         _player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         _player.HasDied += () => { Invoke(nameof(Player_HasDied), 3f); };
-        _player.Hit += (hitPoints) => { Map.State.SetPlayerHitPoints(hitPoints); };
-        _player.HitPoints = Map.State.PlayerHitPoints;
+        _player.Hit += (hitPoints) => { PlayerState.SetHitPoints(hitPoints); };
+        _player.HitPoints = PlayerState.HitPoints;
 
         float minimum = 0;
         float weightSum = Configuration.Enemies.Sum(e => e.Weight);
