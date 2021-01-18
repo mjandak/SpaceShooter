@@ -41,7 +41,7 @@ public class Spawner : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
+    IEnumerator Start()
     {
         if (!Configuration) throw new ArgumentNullException(nameof(Configuration));
 
@@ -64,8 +64,9 @@ public class Spawner : MonoBehaviour
         }
         _index = new BinTree<float>(_intervals.Select(i => i.Minimum).ToArray());
 
+        yield return new WaitForSeconds(3f);
+
         StartCoroutine(nameof(Spawn));
-        //StartCoroutine(nameof(EndFlight));
     }
 
     private void Player_HasDied()

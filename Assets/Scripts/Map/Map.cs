@@ -37,7 +37,6 @@ namespace SpaceMap
                 PlayerPosition = initPosition,
                 Visited = new List<string>() { initPosition }
             };
-            PlayerState.ResetHitPoints();
         }
 
         // Start is called before the first frame update
@@ -421,22 +420,27 @@ namespace SpaceMap
 
 static class PlayerState
 {
-    private static ushort _hitPoints;
-    public static ushort HitPoints { get => _hitPoints; }
+    private const ushort INIT_MAX_HIT_POINTS = 6;
+    private static ushort _maxHitPoints;
+
+    public static ushort HitPoints { get; private set; }
     public static event Action HitPointsChanged;
     public static bool HasDoubleGun;
 
+    static PlayerState()
+    {
+        HitPoints = _maxHitPoints = INIT_MAX_HIT_POINTS;
+    }
+
     public static void ResetHitPoints()
     {
-        _hitPoints = 6;
+        HitPoints = _maxHitPoints;
         HitPointsChanged?.Invoke();
     }
 
     public static void SetHitPoints(ushort amount)
     {
-        _hitPoints = amount;
+        HitPoints = amount;
         HitPointsChanged?.Invoke();
     }
 }
-
-
